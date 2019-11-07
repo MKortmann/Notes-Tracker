@@ -10,7 +10,7 @@ const item = (props) => {
         <Typography>{props.label}</Typography>
       </Grid>
       <Grid item xs={6}>
-        <DeleteOutlinedIcon onClick={props.clicked} style={{cursor: "pointer"}}/>
+        <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer"}} id={props.id}/>
       </Grid>
     </Grid>
   )

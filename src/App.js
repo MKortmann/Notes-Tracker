@@ -8,12 +8,12 @@ import 'typeface-roboto';
 
 
 class App extends Component {
-
+// we store basically the arrays of items and the actual typed item.
   state = {
     items: [],
     item: null
   }
-
+// add the item to the items array
   addItem = () => {
     const items = [...this.state.items];
     items.push(this.state.item);
@@ -21,17 +21,14 @@ class App extends Component {
       items: items
     })
   }
-
+// Used to save item at each keyboard input
   saveItem = (e) => {
     this.setState({item: e.target.value});
   }
-
-  itemClicked = (e) => {
-
-    console.log(`You clicked at: ${e._dispatchInstances.key}`);
-    const items = [...this.state.items];
-    items.splice(e._dispatchInstances.key, 1);
-
+  // Used to remove items
+  itemClicked = (id) => {
+    let items = [...this.state.items];
+    items.splice(id, 1);
     this.setState({
       items: items
     })
@@ -45,8 +42,8 @@ class App extends Component {
         let styleBackground = null;
         styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
-          <div style={{background: styleBackground}}>
-          <Item key={index} label={i} clicked={this.itemClicked}/>
+          <div key={index}  style={{background: styleBackground}}>
+          <Item label={i} clicked={this.itemClicked} id={index}/>
           </div>
         )
       })
