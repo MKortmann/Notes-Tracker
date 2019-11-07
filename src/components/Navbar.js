@@ -9,7 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
+    background: 'rgba(0,212,255,0.8)',
+    color: "black"
   },
   menuButton: {
     marginRight: theme.spacing(2),

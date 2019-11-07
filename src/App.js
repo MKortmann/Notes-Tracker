@@ -10,27 +10,49 @@ import 'typeface-roboto';
 class App extends Component {
 
   state = {
-    items: []
+    items: [],
+    item: null
   }
 
   addItem = () => {
     const items = [...this.state.items];
-    items.push(<Item key={new Date()}/>);
+    items.push(this.state.item);
+    this.setState({
+      items: items
+    })
+  }
+
+  saveItem = (e) => {
+    this.setState({item: e.target.value});
+  }
+
+  itemClicked = (e) => {
+
+    console.log(`You clicked at: ${e._dispatchInstances.key}`);
+    const items = [...this.state.items];
+    items.splice(e._dispatchInstances.key, 1);
+
     this.setState({
       items: items
     })
   }
 
 
-
-
   render () {
+
+  const itemsToBeRender =  (
+    <ul>
+      {this.state.items.map((i, index) => {
+        return <li key={index} onClick={this.itemClicked}>{i}</li>
+      })}
+    </ul>)
+
     return (
       <div className="App">
         <Navbar />
-        <Input />
+        <Input onChange={this.saveItem}/>
         <Button clicked={this.addItem}/>
-        {this.state.items}
+        {itemsToBeRender}
       </div>
     );
   }

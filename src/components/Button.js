@@ -10,13 +10,18 @@ import { styled } from '@material-ui/core/styles';
 // </Button>
 
 const MyButton = styled(Button)({
-  background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
+  background: 'rgba(0,212,255,0.5)',
   border: 0,
   borderRadius: 3,
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   color: 'white',
   height: 48,
   padding: '0 30px',
+  "&:hover": {
+    background: "rgba(255, 105, 135, .5)",
+  }
+
+
 });
 
 function button (props) {

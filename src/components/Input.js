@@ -11,16 +11,18 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: 200
   },
+
 }));
 
-export default function Input() {
+export default function Input(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       <TextField
+        onChange={props.onChange}
         id="standard-full-width"
         label="Please, add your note"
         style={{ margin: 8 }}
