@@ -41,11 +41,10 @@ class App extends Component {
   render () {
 
   const itemsToBeRender =  (
-    <ul>
-      {this.state.items.map((i, index) => {
-        return <li key={index} onClick={this.itemClicked}>{i}</li>
-      })}
-    </ul>)
+      this.state.items.map((i, index) => {
+        return <Item key={index} label={i} clicked={this.itemClicked}/>
+      })
+    )
 
     return (
       <div className="App">

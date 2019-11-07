@@ -1,9 +1,9 @@
 import React from "react";
 
 
-const item = () => {
+const item = (props) => {
   return (
-    <h1>First Item</h1>
+    <h4 onClick={props.clicked}>{props.label}</h4>
   )
 }
 
