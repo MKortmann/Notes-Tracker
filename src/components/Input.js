@@ -1,15 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
   container: {
   display: 'flex',
   flexWrap: 'wrap',
+  margin: "15px",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -18,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ContainedButtons() {
+export default function Input() {
   const classes = useStyles();
 
   return (
@@ -34,10 +31,6 @@ export default function ContainedButtons() {
           shrink: true,
         }}
       />
-      <Button variant="outlined" color="secondary" fullWidth className={classes.button}>
-        Submit
-      </Button>
-
     </div>
   );
 }
