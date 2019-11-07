@@ -24,9 +24,9 @@ export default function Input(props) {
       <TextField
         onChange={props.onChange}
         id="standard-full-width"
-        label="Please, add your note"
+        label={props.label}
         style={{ margin: 8 }}
-        placeholder="Placeholder"
+        placeholder={props.label}
         fullWidth
         margin="normal"
         InputLabelProps={{

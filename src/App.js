@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
 import Navbar from "./components/Navbar";
 import Input from "./components/Input";
@@ -11,7 +12,14 @@ class App extends Component {
 // we store basically the arrays of items and the actual typed item.
   state = {
     items: [],
-    item: null
+    container:
+      [
+      // {
+      // id: "item1", items: []
+      // }
+      ],
+    item: null,
+    list: null
   }
 // add the item to the items array
   addItem = () => {
@@ -21,9 +29,25 @@ class App extends Component {
       items: items
     })
   }
-// Used to save item at each keyboard input
+// add the item to the items array
+  addList = () => {
+    // {
+    // id: "item1", items: []
+    // }
+    const container = [...this.state.container];
+    const id = container.length + 1;
+    container.push({id: `${this.state.list}-${id}`, items: []});
+    this.setState({
+      container: container
+    })
+  }
+// To save item name at each keyboard input
   saveItem = (e) => {
     this.setState({item: e.target.value});
+  }
+// To save list name at each keyboard input
+  saveList = (e) => {
+    this.setState({list: e.target.value});
   }
   // Used to remove items
   itemClicked = (id) => {
@@ -33,7 +57,6 @@ class App extends Component {
       items: items
     })
   }
-
 
   render () {
 
@@ -49,15 +72,53 @@ class App extends Component {
       })
     )
 
+  const buttonsListToBeRender =  (
+      this.state.container.map((i, index) => {
+        return (
+          <Button label={i.id} clicked={this.addItem} icon={"load"}/>
+        )
+      })
+    )
+
+  let formToAddItemsToBeRender = null;
+  if (this.state.container.length !== 0) {
+    formToAddItemsToBeRender = (
+        <React.Fragment>
+          {buttonsListToBeRender}
+          <Grid container alignItems="center">
+          <Grid item xs={6}>
+            <Input label={"Please, add your item"} onChange={this.saveItem}/>
+          </Grid>
+          <Grid item xs={6}>
+            <Button label={"Submit"} clicked={this.addItem} icon={"send"}/>
+          </Grid>
+          </Grid>
+        </React.Fragment>
+    )
+  }
+
+
     return (
       <div className="App">
-        <Navbar />
-        <Input onChange={this.saveItem}/>
-        <Button clicked={this.addItem}/>
-        {itemsToBeRender}
+        <Grid className="App" container direction="row" justify="center" alignItems="center">
+          <Navbar />
+          <Grid item xs={6}>
+            <Input label={"Please, add your list name"} onChange={this.saveList}/>
+          </Grid>
+          <Grid item xs={6}>
+            <Button label={"Add List"} clicked={this.addList} icon={"add"}/>
+          </Grid>
+          <Grid item xs={12}>
+          {formToAddItemsToBeRender}
+          </Grid>
+          <Grid item xs={12}>
+          {itemsToBeRender}
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
+
 
 export default App;

@@ -15,7 +15,7 @@ const MyButton = styled(Button)({
   borderRadius: 3,
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   color: 'white',
-  height: 48,
+  height: 36,
   padding: '0 30px',
   "&:hover": {
     background: "rgba(255, 105, 135, .5)",
@@ -28,8 +28,8 @@ const MyButton = styled(Button)({
 function button (props) {
   return (
     <React.Fragment>
-      <MyButton onClick={props.clicked} variant="contained" size="small" color="default"  endIcon={<Icon>send</Icon>} >
-        Submit
+      <MyButton onClick={props.clicked} variant="contained" size="small" color="default"  endIcon={<Icon>{props.icon}</Icon>} >
+        {props.label}
       </MyButton>
     </React.Fragment>
   );
