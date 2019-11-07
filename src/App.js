@@ -42,7 +42,13 @@ class App extends Component {
 
   const itemsToBeRender =  (
       this.state.items.map((i, index) => {
-        return <Item key={index} label={i} clicked={this.itemClicked}/>
+        let styleBackground = null;
+        styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
+        return (
+          <div style={{background: styleBackground}}>
+          <Item key={index} label={i} clicked={this.itemClicked}/>
+          </div>
+        )
       })
     )
 

@@ -19,7 +19,8 @@ const MyButton = styled(Button)({
   padding: '0 30px',
   "&:hover": {
     background: "rgba(255, 105, 135, .5)",
-  }
+  },
+  margin: "10px"
 
 
 });
