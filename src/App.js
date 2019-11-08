@@ -14,31 +14,33 @@ class App extends Component {
     items: [],
     container:
       [
-      // {
-      // id: "item1", items: []
-      // }
+        // {
+        // id: "item1", items: []
+        // }
       ],
     item: null,
-    list: null
+    list: null,
+    selectedList: 0,
+    itemAdded: false
   }
+
 // add the item to the items array
   addItem = () => {
-    const items = [...this.state.items];
-    items.push(this.state.item);
+    const container = [...this.state.container];
+    container[this.state.selectedList].items.push(this.state.item);
     this.setState({
-      items: items
+      container: container,
+      itemAdded: true
     })
   }
 // add the item to the items array
   addList = () => {
-    // {
-    // id: "item1", items: []
-    // }
     const container = [...this.state.container];
     const id = container.length + 1;
     container.push({id: `${this.state.list}-${id}`, items: []});
     this.setState({
-      container: container
+      container: container,
+      list: `${this.state.list}-${id}`
     })
   }
 // To save item name at each keyboard input
@@ -57,11 +59,30 @@ class App extends Component {
       items: items
     })
   }
+  // Set the active List to be displayed
+  setActiveList = (id) => {
+    // we will get here the last value of the string that correspond to the id number
+    // used to select the active item in the items.
+    const lastIdValue = parseInt(id.slice(-1))-1;
+    this.setState({
+      selectedList: lastIdValue
+    })
+  }
 
   render () {
 
-  const itemsToBeRender =  (
-      this.state.items.map((i, index) => {
+  const buttonsListToBeRender =  (
+      this.state.container.map((i, index) => {
+        return (
+          <Button label={i.id} clicked={this.setActiveList.bind(this, i.id)} icon={"load"}/>
+        )
+      })
+    )
+
+  let itemsToBeRender = null;
+  if (this.state.itemAdded) {
+  itemsToBeRender =  (
+      this.state.container[this.state.selectedList].items.map((i, index) => {
         let styleBackground = null;
         styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
@@ -71,15 +92,7 @@ class App extends Component {
         )
       })
     )
-
-  const buttonsListToBeRender =  (
-      this.state.container.map((i, index) => {
-        return (
-          <Button label={i.id} clicked={this.addItem} icon={"load"}/>
-        )
-      })
-    )
-
+  }
   let formToAddItemsToBeRender = null;
   if (this.state.container.length !== 0) {
     formToAddItemsToBeRender = (
