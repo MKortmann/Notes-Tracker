@@ -11,7 +11,6 @@ import 'typeface-roboto';
 class App extends Component {
 // we store basically the arrays of items and the actual typed item.
   state = {
-    items: [],
     container:
       [
         // {
@@ -103,6 +102,7 @@ class App extends Component {
     )
 
   let itemsToBeRender = null;
+  // render only if the list has items
   if (this.state.itemAdded) {
   itemsToBeRender =  (
       this.state.container[this.state.selectedList].items.map((i, index) => {
@@ -116,6 +116,13 @@ class App extends Component {
       })
     )
   }
+  let selectedList = null;
+  if(this.state.container.length > 0) {
+    selectedList = (
+      <h2>The Selected List is: {this.state.container[this.state.selectedList].id}</h2>
+    )
+  }
+
   let formToAddItemsToBeRender = null;
   if (this.state.container.length !== 0) {
     formToAddItemsToBeRender = (
@@ -148,6 +155,7 @@ class App extends Component {
           {formToAddItemsToBeRender}
           </Grid>
           <Grid item xs={12}>
+          {selectedList}
           {itemsToBeRender}
           </Grid>
         </Grid>
