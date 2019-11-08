@@ -123,6 +123,7 @@ class App extends Component {
       this.state.container[this.state.selectedList].items.map((i, index) => {
         let styleBackground = null;
         styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
+        // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
           <Item label={i} clicked={this.itemRemove} id={index}/>
