@@ -22,8 +22,8 @@ class App extends Component {
     list: null,
     selectedList: 0,
     itemAdded: false,
-    inputListValue: null,
-    inputItemValue: null
+    inputListValue: "",
+    inputItemValue: ""
   }
 
 // add the item to the items array
@@ -77,13 +77,17 @@ class App extends Component {
   }
 
   // delete this list!!
-  listItemClicked = (id) => {    
+  listItemClicked = (id) => {
     const container = [...this.state.container];
-    // getting the number of the id
-    const lastIdValue = parseInt(id.slice(-1))-1;
-    container.splice(lastIdValue, 1);
+    // here we check for the exactly name that is the key(id)
+    container.forEach( (i, index) => {
+      if(i.id === id) {
+        container.splice(index, 1);
+      }
+    })
     this.setState({
-      container: container
+      container: container,
+      itemAdded: false
     })
   }
 
@@ -92,7 +96,9 @@ class App extends Component {
   const buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
         return (
-          <Button label={i.id}
+          <Button
+            key={i.id}
+            label={i.id}
             clicked={this.setActiveList.bind(this, i.id)}
             icon={"delete"}
             listItemClicked={this.listItemClicked.bind(this, i.id)}
