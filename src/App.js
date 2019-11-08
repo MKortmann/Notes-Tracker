@@ -89,15 +89,30 @@ class App extends Component {
 
   const buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
-        return (
-          <Button
-            key={i.id}
-            label={i.id}
-            clicked={this.setActiveList.bind(this, i.id)}
-            icon={"delete"}
-            listItemClicked={this.listItemClicked.bind(this, i.id)}
-            />
-        )
+
+        if(this.state.selectedList == index) {
+          return (
+            <Button
+              key={i.id}
+              label={i.id}
+              clicked={this.setActiveList.bind(this, i.id)}
+              icon={"delete"}
+              listItemClicked={this.listItemClicked.bind(this, i.id)}
+              color={"black"}
+              />
+          )
+        } else {
+          return (
+            <Button
+              key={i.id}
+              label={i.id}
+              clicked={this.setActiveList.bind(this, i.id)}
+              icon={"delete"}
+              listItemClicked={this.listItemClicked.bind(this, i.id)}
+              />
+          )
+        }
+
       })
     )
 
@@ -116,12 +131,12 @@ class App extends Component {
       })
     )
   }
-  let selectedList = null;
-  if(this.state.container.length > 0) {
-    selectedList = (
-      <h2>The Selected List is: {this.state.container[this.state.selectedList].id}</h2>
-    )
-  }
+  // let selectedList = null;
+  // if(this.state.container.length > 0) {
+  //   selectedList = (
+  //     <h2>The Selected List is: {this.state.container[this.state.selectedList].id}</h2>
+  //   )
+  // }
 
   let formToAddItemsToBeRender = null;
   if (this.state.container.length !== 0) {
@@ -155,7 +170,6 @@ class App extends Component {
           {formToAddItemsToBeRender}
           </Grid>
           <Grid item xs={12}>
-          {selectedList}
           {itemsToBeRender}
           </Grid>
         </Grid>
