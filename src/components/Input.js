@@ -32,6 +32,7 @@ export default function Input(props) {
         InputLabelProps={{
           shrink: true,
         }}
+        value={props.value}
       />
     </div>
   );

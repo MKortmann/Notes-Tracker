@@ -21,7 +21,8 @@ class App extends Component {
     item: null,
     list: null,
     selectedList: 0,
-    itemAdded: false
+    itemAdded: false,
+    inputValue: null
   }
 
 // add the item to the items array
@@ -34,14 +35,16 @@ class App extends Component {
     })
   }
 // add the item to the items array
-  addList = () => {
+  addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
     container.push({id: `${this.state.list}-${id}`, items: []});
     this.setState({
       container: container,
-      list: `${this.state.list}-${id}`
+      list: `${this.state.list}-${id}`,
+      inputValue: ""
     })
+
   }
 // To save item name at each keyboard input
   saveItem = (e) => {
@@ -49,7 +52,8 @@ class App extends Component {
   }
 // To save list name at each keyboard input
   saveList = (e) => {
-    this.setState({list: e.target.value});
+    this.setState({list: e.target.value,
+                    inputValue: e.target.value});
   }
   // Used to REMOVE items
   itemRemove = (id) => {
@@ -74,7 +78,9 @@ class App extends Component {
   const buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
         return (
-          <Button label={i.id} clicked={this.setActiveList.bind(this, i.id)} icon={"load"}/>
+          <Button label={i.id}
+            clicked={this.setActiveList.bind(this, i.id)}
+            icon={"load"}/>
         )
       })
     )
@@ -100,7 +106,7 @@ class App extends Component {
           {buttonsListToBeRender}
           <Grid container alignItems="center">
           <Grid item xs={6}>
-            <Input label={"Please, add your item"} onChange={this.saveItem}/>
+            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputValue}/>
           </Grid>
           <Grid item xs={6}>
             <Button label={"Submit"} clicked={this.addItem} icon={"send"}/>
@@ -116,10 +122,10 @@ class App extends Component {
         <Grid className="App" container direction="row" justify="center" alignItems="center">
           <Navbar />
           <Grid item xs={6}>
-            <Input label={"Please, add your list name"} onChange={this.saveList}/>
+            <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputValue}/>
           </Grid>
           <Grid item xs={6}>
-            <Button label={"Add List"} clicked={this.addList} icon={"add"}/>
+            <Button label={"Add List"} clicked={this.addList} icon={"add"} />
           </Grid>
           <Grid item xs={12}>
           {formToAddItemsToBeRender}
