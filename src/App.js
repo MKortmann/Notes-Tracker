@@ -76,6 +76,17 @@ class App extends Component {
     })
   }
 
+  // delete this list!!
+  listItemClicked = (id) => {    
+    const container = [...this.state.container];
+    // getting the number of the id
+    const lastIdValue = parseInt(id.slice(-1))-1;
+    container.splice(lastIdValue, 1);
+    this.setState({
+      container: container
+    })
+  }
+
   render () {
 
   const buttonsListToBeRender =  (
@@ -83,7 +94,9 @@ class App extends Component {
         return (
           <Button label={i.id}
             clicked={this.setActiveList.bind(this, i.id)}
-            icon={"load"}/>
+            icon={"delete"}
+            listItemClicked={this.listItemClicked.bind(this, i.id)}
+            />
         )
       })
     )
