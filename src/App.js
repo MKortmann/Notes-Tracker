@@ -98,7 +98,7 @@ class App extends Component {
               clicked={this.setActiveList.bind(this, i.id)}
               icon={"delete"}
               listItemClicked={this.listItemClicked.bind(this, i.id)}
-              color={"black"}
+              color={"red"}
               />
           )
         } else {
@@ -148,7 +148,7 @@ class App extends Component {
             <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
           </Grid>
           <Grid item xs={6}>
-            <Button label={"Submit"} clicked={this.addItem} icon={"send"}/>
+            <Button label={"Submit"} color={"#1B2616"} clicked={this.addItem} icon={"send"}/>
           </Grid>
           </Grid>
         </React.Fragment>
@@ -164,7 +164,7 @@ class App extends Component {
             <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
           </Grid>
           <Grid item xs={6}>
-            <Button label={"Add List"} clicked={this.addList} icon={"add"} />
+            <Button label={"Add List"} color={"#1B2616"} clicked={this.addList} icon={"add"} />
           </Grid>
           <Grid item xs={12}>
           {formToAddItemsToBeRender}
