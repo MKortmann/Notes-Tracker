@@ -18,8 +18,6 @@ class App extends Component {
         // id: "item1", items: []
         // }
       ],
-    item: null,
-    list: null,
     selectedList: 0,
     itemAdded: false,
     inputListValue: "",
@@ -29,7 +27,7 @@ class App extends Component {
 // add the item to the items array
   addItem = () => {
     const container = [...this.state.container];
-    container[this.state.selectedList].items.push(this.state.item);
+    container[this.state.selectedList].items.push(this.state.inputItemValue);
     this.setState({
       container: container,
       itemAdded: true,
@@ -40,23 +38,20 @@ class App extends Component {
   addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
-    container.push({id: `${this.state.list}-${id}`, items: []});
+    container.push({id: `${this.state.inputListValue}-${id}`, items: []});
     this.setState({
       container: container,
-      list: `${this.state.list}-${id}`,
       inputListValue: ""
     })
 
   }
 // To save item name at each keyboard input
   saveItem = (e) => {
-    this.setState({item: e.target.value,
-                  inputItemValue: e.target.value});
+    this.setState({inputItemValue: e.target.value});
   }
 // To save list name at each keyboard input
   saveList = (e) => {
-    this.setState({list: e.target.value,
-                  inputListValue: e.target.value});
+    this.setState({inputListValue: e.target.value});
   }
   // Used to REMOVE items
   itemRemove = (id) => {
