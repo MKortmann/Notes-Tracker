@@ -22,7 +22,8 @@ class App extends Component {
     list: null,
     selectedList: 0,
     itemAdded: false,
-    inputValue: null
+    inputListValue: null,
+    inputItemValue: null
   }
 
 // add the item to the items array
@@ -31,7 +32,8 @@ class App extends Component {
     container[this.state.selectedList].items.push(this.state.item);
     this.setState({
       container: container,
-      itemAdded: true
+      itemAdded: true,
+      inputItemValue: ""
     })
   }
 // add the item to the items array
@@ -42,18 +44,19 @@ class App extends Component {
     this.setState({
       container: container,
       list: `${this.state.list}-${id}`,
-      inputValue: ""
+      inputListValue: ""
     })
 
   }
 // To save item name at each keyboard input
   saveItem = (e) => {
-    this.setState({item: e.target.value});
+    this.setState({item: e.target.value,
+                  inputItemValue: e.target.value});
   }
 // To save list name at each keyboard input
   saveList = (e) => {
     this.setState({list: e.target.value,
-                    inputValue: e.target.value});
+                  inputListValue: e.target.value});
   }
   // Used to REMOVE items
   itemRemove = (id) => {
@@ -106,7 +109,7 @@ class App extends Component {
           {buttonsListToBeRender}
           <Grid container alignItems="center">
           <Grid item xs={6}>
-            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputValue}/>
+            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
           </Grid>
           <Grid item xs={6}>
             <Button label={"Submit"} clicked={this.addItem} icon={"send"}/>
@@ -122,7 +125,7 @@ class App extends Component {
         <Grid className="App" container direction="row" justify="center" alignItems="center">
           <Navbar />
           <Grid item xs={6}>
-            <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputValue}/>
+            <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
           </Grid>
           <Grid item xs={6}>
             <Button label={"Add List"} clicked={this.addList} icon={"add"} />
