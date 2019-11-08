@@ -51,12 +51,12 @@ class App extends Component {
   saveList = (e) => {
     this.setState({list: e.target.value});
   }
-  // Used to remove items
-  itemClicked = (id) => {
-    let items = [...this.state.items];
-    items.splice(id, 1);
+  // Used to REMOVE items
+  itemRemove = (id) => {
+    let container = [...this.state.container];
+    container[this.state.selectedList].items.splice(id, 1);
     this.setState({
-      items: items
+      container: container
     })
   }
   // Set the active List to be displayed
@@ -87,7 +87,7 @@ class App extends Component {
         styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-          <Item label={i} clicked={this.itemClicked} id={index}/>
+          <Item label={i} clicked={this.itemRemove} id={index}/>
           </div>
         )
       })
