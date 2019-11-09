@@ -9,10 +9,12 @@ import 'typeface-roboto';
 
 
 class App extends Component {
-// we store basically the arrays of items and the actual typed item.
+// container: we have here a container that store all the list + items and the respective subitems
+// selectedList and SelectedItem: help to track which list and item we have seletected!
+// inputListValue and inputItemValue get the input of the keyboard to store the value in the container
   state = {
     container:
-      [
+      [ // TREE CONTAINER STORE
         // {
         // id: "item1", items: [
                               // {
@@ -24,11 +26,10 @@ class App extends Component {
     selectedList: 0,
     selectedItem: 0,
     inputListValue: "",
-    inputItemValue: "",
-    inputSubItemValue: "itemsubvalue"
+    inputItemValue: ""
   }
 
-// add the item to the items array
+// ADD:  add a new ITEM to the items array in the respectived selectedList
   addItem = () => {
     const container = [...this.state.container];
     container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: []});
@@ -37,7 +38,7 @@ class App extends Component {
       inputItemValue: ""
     })
   }
-// add the item to the items array
+// ADD: a new LIST to the container!
   addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
@@ -46,31 +47,25 @@ class App extends Component {
       container: container,
       inputListValue: ""
     })
-
   }
-  // add the subitem to the items array
-    addSubItem = (subitem, selectedItem) => {
-      const container = [...this.state.container];
-      container[this.state.selectedList].items[selectedItem].subitems.push(subitem);
-      this.setState({
-        container: container,
-        inputItemValue: ""
-      })
-    }
-// To save item name at each keyboard input
+  // ADD the SUBITEM to the items array
+  addSubItem = (subitem, selectedItem) => {
+    const container = [...this.state.container];
+    container[this.state.selectedList].items[selectedItem].subitems.push(subitem);
+    this.setState({
+      container: container,
+      inputItemValue: ""
+    })
+  }
+// To save item name at each keyboard input at the state
   saveItem = (e) => {
     this.setState({inputItemValue: e.target.value});
   }
-// // To save item name at each keyboard input
-//   saveSubItem = (e) => {
-//     debugger
-//     this.setState({inputSubItemValue: e.target.value});
-//   }
-// To save list name at each keyboard input
+// To save list name at each keyboard input at the state
   saveList = (e) => {
     this.setState({inputListValue: e.target.value});
   }
-  // Used to REMOVE items
+  // REMOVE ITEMS
   itemRemove = (id) => {
     let container = [...this.state.container];
     container[this.state.selectedList].items.splice(id, 1);
@@ -78,7 +73,7 @@ class App extends Component {
       container: container
     })
   }
-  // Set the active List to be displayed
+  // SET THE ACTIVE LIST TO BE DISPLAYED
   setActiveList = (id) => {
     // we will get here the last value of the string that correspond to the id number
     // used to select the active item in the items.
@@ -88,7 +83,7 @@ class App extends Component {
     })
   }
 
-  // delete this list!!
+  // DELETE the LIST
   listItemClicked = (id) => {
     const container = [...this.state.container];
     // here we check for the exactly name that is the key(id)
@@ -97,7 +92,7 @@ class App extends Component {
         container.splice(index, 1);
       }
     })
-    // reordering the list and renamed interval:
+    // AFTER DELETING A LIST WE HAVE TO REORDERING IT
     container.forEach( (id, index) => {
       const newString = id.id.substring(0, id.id.length -1);
       const number = index + 1;
@@ -110,9 +105,9 @@ class App extends Component {
 
   render () {
 
+  // RENDER THE LIST OF BUTTONS
   const buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
-
         if(this.state.selectedList === index) {
           return (
             <Button
@@ -135,10 +130,27 @@ class App extends Component {
               />
           )
         }
-
       })
     )
 
+  // FORM THAT WILL ALLOW US TO ADD ITEMS
+  let formToAddItemsToBeRender = null;
+  if (this.state.container.length !== 0) {
+    formToAddItemsToBeRender = (
+        <React.Fragment>
+          {buttonsListToBeRender}
+          <Grid container alignItems="center">
+          <Grid item xs={6}>
+            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
+          </Grid>
+          <Grid item xs={6}>
+            <Button label={"Submit"} color={"#1B2616"} clicked={this.addItem} icon={"send"}/>
+          </Grid>
+          </Grid>
+        </React.Fragment>
+    )
+  }
+  // RENDER THE LIST OF ITEMS
   let itemsToBeRender = null;
   // render only if the list has items
   if (this.state.container[this.state.selectedList]) {
@@ -157,30 +169,6 @@ class App extends Component {
       })
     )
   }
-  // let selectedList = null;
-  // if(this.state.container.length > 0) {
-  //   selectedList = (
-  //     <h2>The Selected List is: {this.state.container[this.state.selectedList].id}</h2>
-  //   )
-  // }
-
-  let formToAddItemsToBeRender = null;
-  if (this.state.container.length !== 0) {
-    formToAddItemsToBeRender = (
-        <React.Fragment>
-          {buttonsListToBeRender}
-          <Grid container alignItems="center">
-          <Grid item xs={6}>
-            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
-          </Grid>
-          <Grid item xs={6}>
-            <Button label={"Submit"} color={"#1B2616"} clicked={this.addItem} icon={"send"}/>
-          </Grid>
-          </Grid>
-        </React.Fragment>
-    )
-  }
-
 
     return (
       <div className="App">
@@ -203,6 +191,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
