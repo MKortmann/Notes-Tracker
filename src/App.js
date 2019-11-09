@@ -32,7 +32,7 @@ class App extends Component {
 // add the item to the items array
   addItem = () => {
     const container = [...this.state.container];
-    container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: ["subItem1", "subItem2"]});
+    container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: []});
     this.setState({
       container: container,
       itemAdded: true,
@@ -43,7 +43,7 @@ class App extends Component {
   addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
-    container.push( {id: `${this.state.inputListValue}-${id}`, items: [ {name: "firstItem", subitems: ["subItem1", "subItem2"]} ] } );
+    container.push( {id: `${this.state.inputListValue}-${id}`, items: [  ] } );
     this.setState({
       container: container,
       inputListValue: ""
@@ -51,9 +51,9 @@ class App extends Component {
 
   }
   // add the subitem to the items array
-    addSubItem = (subitem) => {
+    addSubItem = (subitem, selectedItem) => {
       const container = [...this.state.container];
-      container[this.state.selectedList].subitems.push(subitem);
+      container[this.state.selectedList].items[selectedItem].subitems.push(subitem);
       this.setState({
         container: container,
         itemAdded: true,
@@ -147,7 +147,7 @@ class App extends Component {
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-          <Item label={i}
+          <Item label={i} selectedItem={index}
             arraySubItems={this.state.container[this.state.selectedList].items[this.state.selectedItem].subitems}
             addSubItem={this.addSubItem} clicked={this.itemRemove} id={index}/>
           </div>

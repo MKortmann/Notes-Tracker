@@ -64,13 +64,12 @@ const Item = (props) => {
   // lost our data
   const [todos, setTodos] = useState([...props.arraySubItems]);
 
-
   const addTodo = text => {
-    const newTodo = [...todos, text];
+    const newTodo = [...props.arraySubItems, text];
     setTodos(newTodo);
     // add the new element to the subitem!
     // props.arraySubItems.push(text);
-    props.addSubItem(text);
+    props.addSubItem(text, props.selectedItem);
     console.log(props.arraySubItems);
   }
 
