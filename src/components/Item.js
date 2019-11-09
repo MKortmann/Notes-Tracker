@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -72,6 +72,11 @@ const Item = (props) => {
     props.addSubItem(text, props.selectedItem);
     console.log(props.arraySubItems);
   }
+
+  useEffect( () => {
+    const newTodo = [...props.arraySubItems];
+    setTodos(newTodo);
+  }, [props.label.name])
 
   return (
     <Grid container>
