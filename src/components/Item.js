@@ -7,26 +7,34 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 
+/* IN THIS CASE TO IMPROVE THE READABILITY I ADDING THREE COMPONENTS IN THIS FILE
+WE HAVE THREE COMPONENTS:
+1) Todo (stateless component): only return the subitems that are the Todos
+2) InputTodo (statefull component): here we have state, by each keyboard pressed key, it add the
+value to the inputValue. This value is passed to the COMPONENT ITEMS than passed
+to the container in APP.js
+3) ITEM (statefull component): Encloses the component Todo and InputTodo
+*/
 
-// COMPONENT TODO THAT RETURNS THE TODO
+// COMPONENT TODO THAT RETURNS THE TODO=SUBITEM
 // using direct destructuring in the func argument.
 function Todo({ todo }) {
   return (
-    <div>
-      <Typography>{todo}</Typography>
-    </div>
+    <Typography>{todo}</Typography>
   )
 }
 
-// COMPONENT INPUT THAT ALLOWS US TO ADD TOTOS
+// COMPONENT INPUT THAT ALLOWS US TO ADD TODOS
 function InputTodo({addTodo}) {
-  const  [value, setValue] = useState("");
-
+  // THE VALUE WILL BE FILLED WITH THE KEYBOARD INPUT
+  // SETTED ON THE RETURN VALUE
+  const  [inputValue, setInputValue] = useState("");
+  console.log(`the inputValue is: ${inputValue}`);
   const submit = e => {
     e.preventDefault();
-    if(!value) return;
-    addTodo(value);
-    setValue("");
+    if(!inputValue) return;
+    addTodo(inputValue);
+    setInputValue("");
   }
 
   return (
@@ -35,7 +43,7 @@ function InputTodo({addTodo}) {
         <form onSubmit={submit}>
           <TextField
             id="standard-full-width"
-            onChange={e => setValue(e.target.value)}
+            onChange={e => setInputValue(e.target.value)}
             label={"Add Your SubItem"}
             style={{ margin: 8 }}
             placeholder={"Add Your SubItem"}
@@ -44,7 +52,7 @@ function InputTodo({addTodo}) {
             InputLabelProps={{
               shrink: true,
             }}
-            value={value}
+            value={inputValue}
           />
         </form>
       </Grid>
@@ -60,22 +68,25 @@ function InputTodo({addTodo}) {
 // MAIN COMPONENT!
 const Item = (props) => {
 
-// we have to save it at the local storage!!! Then load it, if not we will
-  // lost our data
-  const [todos, setTodos] = useState([...props.arraySubItems]);
+  // we load the data always from the container at App.js
+  // the data loaded is stored in subItems
+  const [subItems, setSubItems] = useState([...props.arraySubItems]);
 
   const addTodo = text => {
-    const newTodo = [...props.arraySubItems, text];
-    setTodos(newTodo);
-    // add the new element to the subitem!
-    // props.arraySubItems.push(text);
+    const newSubItem = [...props.arraySubItems, text];
+    setSubItems(newSubItem);
+    // add the new SUBITEM to the specific ITEM in the container at APP.js!
     props.addSubItem(text, props.selectedItem);
     console.log(props.arraySubItems);
   }
 
+  // THE USE EFFECT WILL BE TRIGERRED ONLY IF YOU CHANGE THE SELECTED LIST:
+  // THIS MEANS ONLY IF YOU SELECTED THE SPECIFIC BUTTON SETTED THROUGH:
+  // [props.label.name]
   useEffect( () => {
-    const newTodo = [...props.arraySubItems];
-    setTodos(newTodo);
+    console.log(`USE EFFECT TRIGGERED`);
+    const newSubItem = [...props.arraySubItems];
+    setSubItems(newSubItem);
   }, [props.label.name])
 
   return (
@@ -91,7 +102,7 @@ const Item = (props) => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-        {todos.map((todo, index) => (
+        {subItems.map((todo, index) => (
             <Todo
               key={index}
               index={index}
