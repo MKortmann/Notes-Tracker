@@ -150,7 +150,7 @@ class App extends Component {
         return (
           <div key={index}  style={{background: styleBackground}}>
           <Item label={i} selectedItem={index}
-            arraySubItems={this.state.container[this.state.selectedList].items[this.state.selectedItem].subitems}
+            arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
             addSubItem={this.addSubItem} clicked={this.itemRemove} id={index}/>
           </div>
         )
