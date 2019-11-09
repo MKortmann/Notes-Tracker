@@ -14,13 +14,18 @@ class App extends Component {
     container:
       [
         // {
-        // id: "item1", items: []
+        // id: "item1", items: [
+                              // {
+                                    // id: "subitem1", items: []
+                              // }
+                            // ]
         // }
       ],
     selectedList: 0,
     itemAdded: false,
     inputListValue: "",
-    inputItemValue: ""
+    inputItemValue: "",
+    inputSubItemValue: "itemsubvalue"
   }
 
 // add the item to the items array
@@ -33,11 +38,21 @@ class App extends Component {
       inputItemValue: ""
     })
   }
+// add the subitem to the items array
+  addSubItem = (subitem) => {
+    const container = [...this.state.container];
+    container[this.state.selectedList].subitems.push(subitem);
+    this.setState({
+      container: container,
+      itemAdded: true,
+      inputItemValue: ""
+    })
+  }
 // add the item to the items array
   addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
-    container.push({id: `${this.state.inputListValue}-${id}`, items: []});
+    container.push({id: `${this.state.inputListValue}-${id}`, items: [], subitems: ["subItem1", "subItem2"]});
     this.setState({
       container: container,
       inputListValue: ""
@@ -48,6 +63,11 @@ class App extends Component {
   saveItem = (e) => {
     this.setState({inputItemValue: e.target.value});
   }
+// // To save item name at each keyboard input
+//   saveSubItem = (e) => {
+//     debugger
+//     this.setState({inputSubItemValue: e.target.value});
+//   }
 // To save list name at each keyboard input
   saveList = (e) => {
     this.setState({inputListValue: e.target.value});
@@ -126,7 +146,7 @@ class App extends Component {
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-          <Item label={i} clicked={this.itemRemove} id={index}/>
+          <Item label={i} arraySubItems={this.state.container[this.state.selectedList].subitems} addSubItem={this.addSubItem} clicked={this.itemRemove} id={index}/>
           </div>
         )
       })
