@@ -97,6 +97,12 @@ class App extends Component {
         container.splice(index, 1);
       }
     })
+    // reordering the list and renamed interval:
+    container.forEach( (id, index) => {
+      const newString = id.id.substring(0, id.id.length -1);
+      const number = index + 1;
+      id.id = newString + number;
+    })
     this.setState({
       container: container,
     })
