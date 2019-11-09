@@ -22,6 +22,7 @@ class App extends Component {
         // }
       ],
     selectedList: 0,
+    selectedItem: 0,
     itemAdded: false,
     inputListValue: "",
     inputItemValue: "",
@@ -31,17 +32,7 @@ class App extends Component {
 // add the item to the items array
   addItem = () => {
     const container = [...this.state.container];
-    container[this.state.selectedList].items.push(this.state.inputItemValue);
-    this.setState({
-      container: container,
-      itemAdded: true,
-      inputItemValue: ""
-    })
-  }
-// add the subitem to the items array
-  addSubItem = (subitem) => {
-    const container = [...this.state.container];
-    container[this.state.selectedList].subitems.push(subitem);
+    container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: ["subItem1", "subItem2"]});
     this.setState({
       container: container,
       itemAdded: true,
@@ -52,13 +43,23 @@ class App extends Component {
   addList = (e) => {
     const container = [...this.state.container];
     const id = container.length + 1;
-    container.push({id: `${this.state.inputListValue}-${id}`, items: [], subitems: ["subItem1", "subItem2"]});
+    container.push( {id: `${this.state.inputListValue}-${id}`, items: [ {name: "firstItem", subitems: ["subItem1", "subItem2"]} ] } );
     this.setState({
       container: container,
       inputListValue: ""
     })
 
   }
+  // add the subitem to the items array
+    addSubItem = (subitem) => {
+      const container = [...this.state.container];
+      container[this.state.selectedList].subitems.push(subitem);
+      this.setState({
+        container: container,
+        itemAdded: true,
+        inputItemValue: ""
+      })
+    }
 // To save item name at each keyboard input
   saveItem = (e) => {
     this.setState({inputItemValue: e.target.value});
@@ -110,7 +111,7 @@ class App extends Component {
   const buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
 
-        if(this.state.selectedList == index) {
+        if(this.state.selectedList === index) {
           return (
             <Button
               key={i.id}
@@ -146,7 +147,9 @@ class App extends Component {
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-          <Item label={i} arraySubItems={this.state.container[this.state.selectedList].subitems} addSubItem={this.addSubItem} clicked={this.itemRemove} id={index}/>
+          <Item label={i}
+            arraySubItems={this.state.container[this.state.selectedList].items[this.state.selectedItem].subitems}
+            addSubItem={this.addSubItem} clicked={this.itemRemove} id={index}/>
           </div>
         )
       })
