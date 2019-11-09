@@ -23,7 +23,6 @@ class App extends Component {
       ],
     selectedList: 0,
     selectedItem: 0,
-    itemAdded: false,
     inputListValue: "",
     inputItemValue: "",
     inputSubItemValue: "itemsubvalue"
@@ -35,7 +34,6 @@ class App extends Component {
     container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: []});
     this.setState({
       container: container,
-      itemAdded: true,
       inputItemValue: ""
     })
   }
@@ -56,7 +54,6 @@ class App extends Component {
       container[this.state.selectedList].items[selectedItem].subitems.push(subitem);
       this.setState({
         container: container,
-        itemAdded: true,
         inputItemValue: ""
       })
     }
@@ -102,7 +99,6 @@ class App extends Component {
     })
     this.setState({
       container: container,
-      itemAdded: false
     })
   }
 
@@ -139,7 +135,6 @@ class App extends Component {
 
   let itemsToBeRender = null;
   // render only if the list has items
-  // if (this.state.itemAdded) {
   if (this.state.container[this.state.selectedList]) {
   itemsToBeRender =  (
       this.state.container[this.state.selectedList].items.map((i, index) => {
