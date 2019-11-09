@@ -139,7 +139,8 @@ class App extends Component {
 
   let itemsToBeRender = null;
   // render only if the list has items
-  if (this.state.itemAdded) {
+  // if (this.state.itemAdded) {
+  if (this.state.container[this.state.selectedList]) {
   itemsToBeRender =  (
       this.state.container[this.state.selectedList].items.map((i, index) => {
         let styleBackground = null;
