@@ -108,20 +108,20 @@ const Item = (props) => {
       <Grid item xs={2}>
         <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer"}} id={props.id}/>
       </Grid>
-      <Grid container>
-        <Grid item xs={12}>
         {subItems.map((todo, index) => (
-          <div key={index} >
-          <Todo
-            index={index}
-            todo={todo}
-          />
-          <DeleteOutlinedIcon onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
-          </div>
+          <Grid container key={index}>
+              <Grid item xs={10}>
+                <Todo
+                  index={index}
+                  todo={todo}
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <DeleteOutlinedIcon onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
+              </Grid>
+          </Grid>
         ))}
         <InputTodo addTodo={addTodo}/>
-        </Grid>
-      </Grid>
     </Grid>
   )
 }
