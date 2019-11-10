@@ -75,9 +75,9 @@ class App extends Component {
     })
   }
   // REMOVE SUBITEMS
-  subItemRemove = (id) => {
+  subItemRemove = (itemId, subItemId) => {
     let container = [...this.state.container];
-    container[this.state.selectedList].items[this.state.selectedItem].subitems.splice(id, 1);
+    container[this.state.selectedList].items[itemId].subitems.splice(subItemId, 1);
     this.setState({
       container: container
     })
@@ -172,7 +172,7 @@ class App extends Component {
           <div key={index}  style={{background: styleBackground}}>
           <Item label={i} selectedItem={index}
             arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
-            addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove} clicked={this.itemRemove.bind(this, index)} id={index}/>
+            addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)} clicked={this.itemRemove.bind(this, index)} id={index}/>
           </div>
         )
       })
