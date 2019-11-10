@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/MKortmann/Health-Tracker/static/css/main.1779617f.chunk.css",
-    "main.js": "/MKortmann/Health-Tracker/static/js/main.5193cdd0.chunk.js",
-    "main.js.map": "/MKortmann/Health-Tracker/static/js/main.5193cdd0.chunk.js.map",
-    "runtime-main.js": "/MKortmann/Health-Tracker/static/js/runtime-main.70a35d22.js",
-    "runtime-main.js.map": "/MKortmann/Health-Tracker/static/js/runtime-main.70a35d22.js.map",
-    "static/css/2.9743289d.chunk.css": "/MKortmann/Health-Tracker/static/css/2.9743289d.chunk.css",
-    "static/js/2.490ba91b.chunk.js": "/MKortmann/Health-Tracker/static/js/2.490ba91b.chunk.js",
-    "static/js/2.490ba91b.chunk.js.map": "/MKortmann/Health-Tracker/static/js/2.490ba91b.chunk.js.map",
-    "index.html": "/MKortmann/Health-Tracker/index.html",
-    "precache-manifest.fd972abde0e1fb8fbd117a40b78c303b.js": "/MKortmann/Health-Tracker/precache-manifest.fd972abde0e1fb8fbd117a40b78c303b.js",
-    "service-worker.js": "/MKortmann/Health-Tracker/service-worker.js",
-    "static/css/2.9743289d.chunk.css.map": "/MKortmann/Health-Tracker/static/css/2.9743289d.chunk.css.map",
-    "static/css/main.1779617f.chunk.css.map": "/MKortmann/Health-Tracker/static/css/main.1779617f.chunk.css.map",
-    "static/media/index.css": "/MKortmann/Health-Tracker/static/media/roboto-latin-900italic.ebf6d164.woff2"
+    "main.css": "/MKortmann/Notes-Tracker/static/css/main.1779617f.chunk.css",
+    "main.js": "/MKortmann/Notes-Tracker/static/js/main.1d68819a.chunk.js",
+    "main.js.map": "/MKortmann/Notes-Tracker/static/js/main.1d68819a.chunk.js.map",
+    "runtime-main.js": "/MKortmann/Notes-Tracker/static/js/runtime-main.e7f6a639.js",
+    "runtime-main.js.map": "/MKortmann/Notes-Tracker/static/js/runtime-main.e7f6a639.js.map",
+    "static/css/2.92d2a433.chunk.css": "/MKortmann/Notes-Tracker/static/css/2.92d2a433.chunk.css",
+    "static/js/2.490ba91b.chunk.js": "/MKortmann/Notes-Tracker/static/js/2.490ba91b.chunk.js",
+    "static/js/2.490ba91b.chunk.js.map": "/MKortmann/Notes-Tracker/static/js/2.490ba91b.chunk.js.map",
+    "index.html": "/MKortmann/Notes-Tracker/index.html",
+    "precache-manifest.5f053a418960d82abcaf90b98ed5306e.js": "/MKortmann/Notes-Tracker/precache-manifest.5f053a418960d82abcaf90b98ed5306e.js",
+    "service-worker.js": "/MKortmann/Notes-Tracker/service-worker.js",
+    "static/css/2.92d2a433.chunk.css.map": "/MKortmann/Notes-Tracker/static/css/2.92d2a433.chunk.css.map",
+    "static/css/main.1779617f.chunk.css.map": "/MKortmann/Notes-Tracker/static/css/main.1779617f.chunk.css.map",
+    "static/media/index.css": "/MKortmann/Notes-Tracker/static/media/roboto-latin-900italic.ebf6d164.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.70a35d22.js",
-    "static/css/2.9743289d.chunk.css",
+    "static/js/runtime-main.e7f6a639.js",
+    "static/css/2.92d2a433.chunk.css",
     "static/js/2.490ba91b.chunk.js",
     "static/css/main.1779617f.chunk.css",
-    "static/js/main.5193cdd0.chunk.js"
+    "static/js/main.1d68819a.chunk.js"
   ]
 }
