@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    background: 'rgba(0,212,255,0.8)',
+    background: 'rgba(0,212,255,0.5)',
     color: "black"
   },
   menuButton: {

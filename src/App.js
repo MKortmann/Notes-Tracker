@@ -152,7 +152,7 @@ class App extends Component {
             <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
           </Grid>
           <Grid item xs={6}>
-            <Button label={"Submit"} color={"#1B2616"} clicked={this.addItem} icon={"send"}/>
+            <Button label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
           </Grid>
           </Grid>
         </React.Fragment>
@@ -190,7 +190,7 @@ class App extends Component {
             <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
           </Grid>
           <Grid item xs={6}>
-            <Button label={"Add List"} color={"#1B2616"} clicked={this.addList} icon={"add"} />
+            <Button label={"Add List"} color={"#00474F"} clicked={this.addList} icon={"add"} />
           </Grid>
           <Grid item xs={12}>
           {formToAddItemsToBeRender}

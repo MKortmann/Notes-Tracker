@@ -20,9 +20,6 @@ to the container in APP.js
 // using direct destructuring in the func argument.
 function Todo(props) {
 
-
- // let newStyleBackground = (props.styleBackground === "white" ) ? 'rgba(0,212,255,0.5)' : "white"
- // let newStyleBackground = (props.styleBackground === "white" ) ? '#DB7582' : "white"
  let newStyleBackground = (props.styleBackground === "white" ) ? '#E8A9B1' : "white"
 
   return (
