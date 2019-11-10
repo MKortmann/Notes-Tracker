@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import TextField from "@material-ui/core/TextField";
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+// import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 
 /* IN THIS CASE TO IMPROVE THE READABILITY I ADDING THREE COMPONENTS IN THIS FILE
@@ -19,8 +19,15 @@ to the container in APP.js
 // COMPONENT TODO THAT RETURNS THE TODO=SUBITEM
 // using direct destructuring in the func argument.
 function Todo(props) {
+
+
+ // let newStyleBackground = (props.styleBackground === "white" ) ? 'rgba(0,212,255,0.5)' : "white"
+ let newStyleBackground = (props.styleBackground === "white" ) ? '#DB7582' : "white"
+
   return (
+    <div style={{background: newStyleBackground, margin: "8px"}}>
       <Typography>{props.todo}</Typography>
+    </div>
   )
 }
 
@@ -57,9 +64,7 @@ function InputTodo({addTodo}) {
         </form>
       </Grid>
       <Grid item xs={6}>
-        <Fab size="small" onClick={submit} color="secondary" aria-label="add" >
-          <AddIcon />
-        </Fab>
+        <Icon onClick={submit} style={{cursor: "pointer"}} color="secondary" aria-label="add">add_circle</Icon>
       </Grid>
     </Grid>
   )
@@ -122,6 +127,7 @@ const Item = (props) => {
                 <Todo
                   index={index}
                   todo={todo}
+                  styleBackground={props.styleBackground}
                 />
               </Grid>
               <Grid item xs={2}>

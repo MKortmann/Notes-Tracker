@@ -171,7 +171,11 @@ class App extends Component {
           <div key={index}  style={{background: styleBackground}}>
           <Item label={i} selectedItem={index}
             arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
-            addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)} clicked={this.itemRemove.bind(this, index)} id={index}/>
+            addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
+            styleBackground={styleBackground}
+            clicked={this.itemRemove.bind(this, index)}
+            id={index}/>
+
           </div>
         )
       })
