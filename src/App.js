@@ -24,7 +24,6 @@ class App extends Component {
         // }
       ],
     selectedList: 0,
-    selectedItem: 0,
     inputListValue: "",
     inputItemValue: ""
   }
