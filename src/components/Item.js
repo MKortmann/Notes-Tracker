@@ -101,13 +101,15 @@ const Item = (props) => {
   // the data loaded is stored in subItems
   const [showSubItems, setShowSubItems] = useState(false);
 
+  let arrowDesign = showSubItems ? "keyboard_arrow_up" : "keyboard_arrow_down";
+
   return (
     <Grid container>
       <Grid item xs={6}>
         <Typography>{props.label.name}</Typography>
       </Grid>
       <Grid item xs={4}>
-        <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer"}}>code</Icon>
+        <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer"}}>{arrowDesign}</Icon>
       </Grid>
       <Grid item xs={2}>
         <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer"}} id={props.id}/>
