@@ -22,7 +22,8 @@ function Todo(props) {
 
 
  // let newStyleBackground = (props.styleBackground === "white" ) ? 'rgba(0,212,255,0.5)' : "white"
- let newStyleBackground = (props.styleBackground === "white" ) ? '#DB7582' : "white"
+ // let newStyleBackground = (props.styleBackground === "white" ) ? '#DB7582' : "white"
+ let newStyleBackground = (props.styleBackground === "white" ) ? '#E8A9B1' : "white"
 
   return (
     <div style={{background: newStyleBackground, margin: "8px"}}>
