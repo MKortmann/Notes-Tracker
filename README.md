@@ -1,6 +1,6 @@
 # Notes Tracker
 
-The idea is to develop a mobile web friendly web application to store and manage your notes ina very easy and clean user interface. 
+The idea is to develop a mobile web friendly web application to store and manage your notes in a very easy and clean user interface. 
 
 The program was developed as simple as possible using only:
   * html
@@ -11,11 +11,14 @@ The program was developed as simple as possible using only:
      
   - **Nice Features:**
     * You can add list that has items + subitems.
-    * Delete item
+    * Delete item & Subitem
  
 ## In Development/TODO: 
  
   - Working: Firebase (back server) integration!!!
+  - Add: edit items
+  - Improve the web responsive design
+  - Improve the style
   
 ## How to start the App?
 
