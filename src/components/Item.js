@@ -18,9 +18,9 @@ to the container in APP.js
 
 // COMPONENT TODO THAT RETURNS THE TODO=SUBITEM
 // using direct destructuring in the func argument.
-function Todo({ todo }) {
+function Todo(props) {
   return (
-    <Typography>{todo}</Typography>
+      <Typography>{props.todo}</Typography>
   )
 }
 
@@ -89,6 +89,14 @@ const Item = (props) => {
     setSubItems(newSubItem);
   }, [props.label.name])
 
+  // ONLY RE-RENDER IF THE NUMBER OF SUBITEMS CHANGED: used to delete subitems and
+  // rerender it!!!
+  useEffect( () => {
+    console.log(`USE EFFECT TRIGGERED`);
+    const newSubItem = [...props.arraySubItems];
+    setSubItems(newSubItem);
+  }, [props.arraySubItems.length])
+
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -103,11 +111,13 @@ const Item = (props) => {
       <Grid container>
         <Grid item xs={12}>
         {subItems.map((todo, index) => (
-            <Todo
-              key={index}
-              index={index}
-              todo={todo}
-            />
+          <div key={index} >
+          <Todo
+            index={index}
+            todo={todo}
+          />
+          <DeleteOutlinedIcon onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
+          </div>
         ))}
         <InputTodo addTodo={addTodo}/>
         </Grid>
