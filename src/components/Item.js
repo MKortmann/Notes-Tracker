@@ -97,17 +97,23 @@ const Item = (props) => {
     setSubItems(newSubItem);
   }, [props.arraySubItems.length])
 
+  // we load the data always from the container at App.js
+  // the data loaded is stored in subItems
+  const [showSubItems, setShowSubItems] = useState(false);
+
   return (
     <Grid container>
       <Grid item xs={6}>
         <Typography>{props.label.name}</Typography>
       </Grid>
       <Grid item xs={4}>
-        <Icon style={{cursor: "pointer"}}>code</Icon>
+        <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer"}}>code</Icon>
       </Grid>
       <Grid item xs={2}>
         <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer"}} id={props.id}/>
       </Grid>
+      {showSubItems ?
+        <React.Fragment>
         {subItems.map((todo, index) => (
           <Grid container key={index}>
               <Grid item xs={10}>
@@ -122,6 +128,8 @@ const Item = (props) => {
           </Grid>
         ))}
         <InputTodo addTodo={addTodo}/>
+        </React.Fragment>
+    : null }
     </Grid>
   )
 }
