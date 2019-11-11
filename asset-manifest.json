@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/MKortmann/Notes-Tracker/static/css/main.1779617f.chunk.css",
-    "main.js": "/MKortmann/Notes-Tracker/static/js/main.1d68819a.chunk.js",
-    "main.js.map": "/MKortmann/Notes-Tracker/static/js/main.1d68819a.chunk.js.map",
-    "runtime-main.js": "/MKortmann/Notes-Tracker/static/js/runtime-main.e7f6a639.js",
-    "runtime-main.js.map": "/MKortmann/Notes-Tracker/static/js/runtime-main.e7f6a639.js.map",
-    "static/css/2.92d2a433.chunk.css": "/MKortmann/Notes-Tracker/static/css/2.92d2a433.chunk.css",
-    "static/js/2.490ba91b.chunk.js": "/MKortmann/Notes-Tracker/static/js/2.490ba91b.chunk.js",
-    "static/js/2.490ba91b.chunk.js.map": "/MKortmann/Notes-Tracker/static/js/2.490ba91b.chunk.js.map",
-    "index.html": "/MKortmann/Notes-Tracker/index.html",
-    "precache-manifest.5f053a418960d82abcaf90b98ed5306e.js": "/MKortmann/Notes-Tracker/precache-manifest.5f053a418960d82abcaf90b98ed5306e.js",
-    "service-worker.js": "/MKortmann/Notes-Tracker/service-worker.js",
-    "static/css/2.92d2a433.chunk.css.map": "/MKortmann/Notes-Tracker/static/css/2.92d2a433.chunk.css.map",
-    "static/css/main.1779617f.chunk.css.map": "/MKortmann/Notes-Tracker/static/css/main.1779617f.chunk.css.map",
-    "static/media/index.css": "/MKortmann/Notes-Tracker/static/media/roboto-latin-900italic.ebf6d164.woff2"
+    "main.css": "/Notes-Tracker/static/css/main.1779617f.chunk.css",
+    "main.js": "/Notes-Tracker/static/js/main.5f5a3179.chunk.js",
+    "main.js.map": "/Notes-Tracker/static/js/main.5f5a3179.chunk.js.map",
+    "runtime-main.js": "/Notes-Tracker/static/js/runtime-main.406529ff.js",
+    "runtime-main.js.map": "/Notes-Tracker/static/js/runtime-main.406529ff.js.map",
+    "static/css/2.8e8a889d.chunk.css": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css",
+    "static/js/2.aa875a22.chunk.js": "/Notes-Tracker/static/js/2.aa875a22.chunk.js",
+    "static/js/2.aa875a22.chunk.js.map": "/Notes-Tracker/static/js/2.aa875a22.chunk.js.map",
+    "index.html": "/Notes-Tracker/index.html",
+    "precache-manifest.df54f1ca02cc3c54fe8594a952e73dda.js": "/Notes-Tracker/precache-manifest.df54f1ca02cc3c54fe8594a952e73dda.js",
+    "service-worker.js": "/Notes-Tracker/service-worker.js",
+    "static/css/2.8e8a889d.chunk.css.map": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css.map",
+    "static/css/main.1779617f.chunk.css.map": "/Notes-Tracker/static/css/main.1779617f.chunk.css.map",
+    "static/media/index.css": "/Notes-Tracker/static/media/roboto-latin-900italic.ebf6d164.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.e7f6a639.js",
-    "static/css/2.92d2a433.chunk.css",
-    "static/js/2.490ba91b.chunk.js",
+    "static/js/runtime-main.406529ff.js",
+    "static/css/2.8e8a889d.chunk.css",
+    "static/js/2.aa875a22.chunk.js",
     "static/css/main.1779617f.chunk.css",
-    "static/js/main.1d68819a.chunk.js"
+    "static/js/main.5f5a3179.chunk.js"
   ]
 }
