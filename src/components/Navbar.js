@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             Notes Tracker
           </Typography>
           <Modal showInputs={false} label={"Account"} title={"Account"} description={"Manage Your Account"} buttonLabel={"close"}></Modal>
