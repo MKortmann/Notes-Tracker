@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -34,11 +34,23 @@ export default function TransitionsModal(props) {
     setOpen(false);
   };
 
-  let showInputs = null;
+  // THE VALUE WILL BE FILLED WITH THE KEYBOARD INPUT
+  // SETTED ON THE RETURN VALUE
+  const  [inputUserNameValue, setInputUserNameValue] = useState("");
+  const  [inputPasswordValue, setInputPasswordValue] = useState("");
+
+  const submit = e => {
+    e.preventDefault();
+    if(!inputUserNameValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
+    else { alert("In development!") }
+  }
+
+  let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
   if (props.showInputs) {
     showInputs = (
       <div>
         <TextField
+          onChange={e => setInputUserNameValue(e.target.value)}
           id="standard-full-width"
           label={"Email address"}
           placeholder={"Add Your Email Address"}
@@ -47,8 +59,10 @@ export default function TransitionsModal(props) {
           InputLabelProps={{
             shrink: true,
           }}
+          value={inputUserNameValue}
         />
         <TextField
+          onChange={e => setInputPasswordValue(e.target.value)}
           id="standard-full-width"
           label={"Your Password"}
           placeholder={"Add Your Password"}
@@ -57,8 +71,10 @@ export default function TransitionsModal(props) {
           InputLabelProps={{
             shrink: true,
           }}
+          value={inputPasswordValue}
         />
-      </div>
+        <Button onSubmit={submit} clicked={submit} label={props.buttonLabel}></Button>
+        </div>
     )
   }
 
@@ -84,7 +100,6 @@ export default function TransitionsModal(props) {
               <h2 id="transition-modal-title">{props.title}</h2>
               <p id="transition-modal-description">{props.description}</p>
               {showInputs}
-              <Button clicked={handleClose} label={props.buttonLabel}></Button>
           </div>
         </Fade>
       </Modal>
