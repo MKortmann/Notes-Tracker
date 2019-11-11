@@ -18,7 +18,7 @@ const MyButton = styled(Button)({
   "&:hover": {
     background: "rgba(255, 105, 135, .5)",
   },
-  margin: "10px"
+  marginTop: "5px"
 });
 
 

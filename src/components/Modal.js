@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
+import Button from "./Button";
 import TextField from "@material-ui/core/TextField";
 
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '2px solid rgba(0,212,255,0.5)',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -64,7 +64,7 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-      <Typography type="button" style={{margin: "20px", fontSize: "20px", cursor: "pointer"}}onClick={handleOpen}>
+      <Typography type="button" style={{margin: "20px", fontSize: "20px", cursor: "pointer"}} onClick={handleOpen}>
         {props.label}
       </Typography>
       <Modal
@@ -84,7 +84,7 @@ export default function TransitionsModal(props) {
               <h2 id="transition-modal-title">{props.title}</h2>
               <p id="transition-modal-description">{props.description}</p>
               {showInputs}
-              <Button onClick={handleClose}>{props.buttonLabel}</Button>
+              <Button clicked={handleClose} label={props.buttonLabel}></Button>
           </div>
         </Fade>
       </Modal>
