@@ -109,13 +109,13 @@ const Item = (props) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Typography>{props.label.name}</Typography>
+        <Typography style={{fontSize: "25px"}}>{props.label.name}</Typography>
       </Grid>
       <Grid item xs={4}>
-        <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer"}}>{arrowDesign}</Icon>
+        <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer", fontSize: "40px"}}>{arrowDesign}</Icon>
       </Grid>
       <Grid item xs={2}>
-        <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer"}} id={props.id}/>
+        <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer", fontSize: "40px"}} id={props.id}/>
       </Grid>
       {showSubItems ?
         <React.Fragment>

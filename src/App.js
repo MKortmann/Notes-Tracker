@@ -127,6 +127,7 @@ class App extends Component {
               icon={"delete"}
               listItemClicked={this.listItemClicked.bind(this, i.id)}
               color={"red"}
+
               />
           )
         } else {
