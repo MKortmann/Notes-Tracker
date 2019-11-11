@@ -5,6 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Button from "@material-ui/core/Button";
+import Modal from "./Modal";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,6 +36,10 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Notes Tracker
           </Typography>
+          <Modal showInputs={false} label={"Account"} title={"Account"} description={"Manage Your Account"} buttonLabel={"close"}></Modal>
+          <Modal showInputs={false} label={"LogOut"} title={"LogOut"} description={""} buttonLabel={"LogOut"}></Modal>
+          <Modal showInputs={true} label={"LogIn"} title={"LogIn"} description={""} buttonLabel={"LogIn"}></Modal>
+          <Modal showInputs={true} label={"SignUp"} title={"SignUp"} description={""} buttonLabel={"SignUp"}></Modal>
         </Toolbar>
       </AppBar>
     </React.Fragment>
