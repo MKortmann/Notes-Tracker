@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Notes-Tracker/static/css/main.1779617f.chunk.css",
-    "main.js": "/Notes-Tracker/static/js/main.d876edf3.chunk.js",
-    "main.js.map": "/Notes-Tracker/static/js/main.d876edf3.chunk.js.map",
+    "main.js": "/Notes-Tracker/static/js/main.c639bb54.chunk.js",
+    "main.js.map": "/Notes-Tracker/static/js/main.c639bb54.chunk.js.map",
     "runtime-main.js": "/Notes-Tracker/static/js/runtime-main.406529ff.js",
     "runtime-main.js.map": "/Notes-Tracker/static/js/runtime-main.406529ff.js.map",
     "static/css/2.8e8a889d.chunk.css": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css",
-    "static/js/2.664d3aa7.chunk.js": "/Notes-Tracker/static/js/2.664d3aa7.chunk.js",
-    "static/js/2.664d3aa7.chunk.js.map": "/Notes-Tracker/static/js/2.664d3aa7.chunk.js.map",
+    "static/js/2.8b1d424b.chunk.js": "/Notes-Tracker/static/js/2.8b1d424b.chunk.js",
+    "static/js/2.8b1d424b.chunk.js.map": "/Notes-Tracker/static/js/2.8b1d424b.chunk.js.map",
     "index.html": "/Notes-Tracker/index.html",
-    "precache-manifest.c2a100fbe79a2daa2414855df0829be4.js": "/Notes-Tracker/precache-manifest.c2a100fbe79a2daa2414855df0829be4.js",
+    "precache-manifest.b55b9260bf4b2813f95e2f1d9dd16442.js": "/Notes-Tracker/precache-manifest.b55b9260bf4b2813f95e2f1d9dd16442.js",
     "service-worker.js": "/Notes-Tracker/service-worker.js",
     "static/css/2.8e8a889d.chunk.css.map": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css.map",
     "static/css/main.1779617f.chunk.css.map": "/Notes-Tracker/static/css/main.1779617f.chunk.css.map",
@@ -18,8 +18,8 @@
   "entrypoints": [
     "static/js/runtime-main.406529ff.js",
     "static/css/2.8e8a889d.chunk.css",
-    "static/js/2.664d3aa7.chunk.js",
+    "static/js/2.8b1d424b.chunk.js",
     "static/css/main.1779617f.chunk.css",
-    "static/js/main.d876edf3.chunk.js"
+    "static/js/main.c639bb54.chunk.js"
   ]
 }
