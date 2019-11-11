@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import TextField from "@material-ui/core/TextField";
-import Fab from '@material-ui/core/Fab';
+// import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 
@@ -62,7 +62,7 @@ function InputTodo({addTodo}) {
         </form>
       </Grid>
       <Grid item xs={6}>
-        <Icon onClick={submit} style={{cursor: "pointer"}} color="secondary" aria-label="add">add_circle</Icon>
+        <Icon onClick={submit} style={{cursor: "pointer", fontSize: 40}} color="secondary" aria-label="add">add_circle</Icon>
       </Grid>
     </Grid>
   )

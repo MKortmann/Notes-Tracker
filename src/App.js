@@ -29,7 +29,8 @@ class App extends Component {
   }
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList
-  addItem = () => {
+  addItem = (e) => {
+    e.preventDefault();
     const container = [...this.state.container];
     container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: []});
     this.setState({
@@ -39,6 +40,7 @@ class App extends Component {
   }
 // ADD: a new LIST to the container!
   addList = (e) => {
+    e.preventDefault();
     const container = [...this.state.container];
     const id = container.length + 1;
     container.push( {id: `${this.state.inputListValue}-${id}`, items: [  ] } );
@@ -148,12 +150,14 @@ class App extends Component {
         <React.Fragment>
           {buttonsListToBeRender}
           <Grid container alignItems="center">
-          <Grid item xs={6}>
-            <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
-          </Grid>
-          <Grid item xs={6}>
-            <Button label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
-          </Grid>
+            <Grid item xs={6}>
+              <form onSubmit={this.addItem}>
+                <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
+              </form>
+            </Grid>
+            <Grid item xs={6}>
+              <Button label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
+            </Grid>
           </Grid>
         </React.Fragment>
     )
@@ -187,7 +191,9 @@ class App extends Component {
         <Grid className="App" container direction="row" justify="center" alignItems="center">
           <Navbar />
           <Grid item xs={6}>
-            <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
+            <form onSubmit={this.addList}>
+              <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
+            </form>
           </Grid>
           <Grid item xs={6}>
             <Button label={"Add List"} color={"#00474F"} clicked={this.addList} icon={"add"} />
