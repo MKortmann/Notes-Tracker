@@ -5,8 +5,9 @@ import Navbar from "./components/Navbar";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import Item from "./components/Item";
+// import Card from '@material-ui/core/Card';
+// import CardContent from '@material-ui/core/CardContent';
 import 'typeface-roboto';
-
 
 class App extends Component {
 // container: we have here a container that store all the list + items and the respective subitems
@@ -174,13 +175,12 @@ class App extends Component {
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-          <Item label={i} selectedItem={index}
-            arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
-            addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
-            styleBackground={styleBackground}
-            clicked={this.itemRemove.bind(this, index)}
-            id={index}/>
-
+            <Item label={i} selectedItem={index}
+              arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
+              addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
+              styleBackground={styleBackground}
+              clicked={this.itemRemove.bind(this, index)}
+              id={index}/>
           </div>
         )
       })
