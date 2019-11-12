@@ -8,8 +8,6 @@ import Button from "./Button";
 import TextField from "@material-ui/core/TextField";
 import Firebase from "../config/fbConfig";
 
-
-
 const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
@@ -86,9 +84,17 @@ export default function TransitionsModal(props) {
         console.log("user signed out");
         setOpen(false);
       });
-
-
   }
+
+  // Listen for auth status changes
+  auth.onAuthStateChanged(user => {
+    if(user) {
+      console.log("The user is online")
+    } else {
+      console.log("The user is offline")
+    }
+
+  });
 
   let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
   if (props.showInputs) {
