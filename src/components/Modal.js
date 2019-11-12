@@ -22,7 +22,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// make auth and firestore references
+export const auth = Firebase.auth();
+
 export default function TransitionsModal(props) {
+
+  const db = Firebase.firestore();
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -39,10 +45,6 @@ export default function TransitionsModal(props) {
   const  [inputUserEmailValue, setinputUserEmailValue] = useState("");
   const  [inputPasswordValue, setInputPasswordValue] = useState("");
 
-
-  // make auth and firestore references
-  const auth = Firebase.auth();
-  const db = Firebase.firestore();
 
   const [closeModal, setcloseModal] = useState(false);
 
@@ -80,21 +82,19 @@ export default function TransitionsModal(props) {
     // LogOut
     auth.signOut()
       .then(() => {
-        alert("you are logout");
         console.log("user signed out");
         setOpen(false);
       });
   }
 
-  // Listen for auth status changes
-  auth.onAuthStateChanged(user => {
-    if(user) {
-      console.log("The user is online")
-    } else {
-      console.log("The user is offline")
-    }
-
-  });
+  // // Listen for auth status changes
+  // auth.onAuthStateChanged(user => {
+  //   if(user) {
+  //     console.log("The user is online")
+  //   } else {
+  //     console.log("The user is offline")
+  //   }
+  // });
 
   let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
   if (props.showInputs) {
