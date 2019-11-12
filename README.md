@@ -28,12 +28,17 @@ The program was developed as simple as possible using only:
  
 ## Installation
 
+0. download and install Node.js (https://nodejs.org/en/)
 1. open your Git Bash editor
 2. create a directory in the desire location
-3. go inside to the folder of your desire location and type: 
-4. type: **git init** , then press enter 
-5. type: **git clone <address from git hub>** , then press enter
+3. go inside to the folder of your desire location 
+Type now this commands here:
+4. git clone <git-hub-address>
+5. npm install
+6. npm start
+7. have fun! :)
 
+<git-hub-address> = is the repository address/link
 
 #### Note about ES6 
 
