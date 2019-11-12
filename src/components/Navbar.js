@@ -38,8 +38,8 @@ export default function ButtonAppBar() {
           </Typography>
           <Modal showInputs={false} label={"Account"} title={"Account"} description={"Manage Your Account"} buttonLabel={"close"}></Modal>
           <Modal showInputs={false} label={"LogOut"} title={"LogOut"} description={""} buttonLabel={"LogOut"}></Modal>
-          <Modal showInputs={true} label={"LogIn"} title={"LogIn"} description={""} buttonLabel={"LogIn"}></Modal>
-          <Modal showInputs={true} label={"SignUp"} title={"SignUp"} description={""} buttonLabel={"SignUp"}></Modal>
+          <Modal LogIn={true} showInputs={true} label={"LogIn"} title={"LogIn"} description={""} buttonLabel={"LogIn"}></Modal>
+          <Modal signUp={true} showInputs={true} label={"SignUp"} title={"SignUp"} description={""} buttonLabel={"SignUp"}></Modal>
         </Toolbar>
       </AppBar>
     </React.Fragment>

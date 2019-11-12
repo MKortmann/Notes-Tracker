@@ -6,6 +6,8 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Button from "./Button";
 import TextField from "@material-ui/core/TextField";
+import Firebase from "../config/fbConfig";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,16 +38,34 @@ export default function TransitionsModal(props) {
 
   // THE VALUE WILL BE FILLED WITH THE KEYBOARD INPUT
   // SETTED ON THE RETURN VALUE
-  const  [inputUserNameValue, setInputUserNameValue] = useState("");
+  const  [inputUserEmailValue, setinputUserEmailValue] = useState("");
   const  [inputPasswordValue, setInputPasswordValue] = useState("");
+
+
+  // make auth and firestore references
+  const auth = Firebase.auth();
+  const db = Firebase.firestore();
+
 
   const submit = e => {
     e.preventDefault();
-    if(!inputUserNameValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
+    if(!inputUserEmailValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
     else {
       alert("In development!")
-      console.log(inputUserNameValue);
+      console.log(inputUserEmailValue);
       console.log(inputPasswordValue);
+
+      if(props.signUp) {
+        auth.createUserWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)
+          .then(res => {
+            console.log(res);
+            console.log(res.user);
+            handleClose;
+          });
+
+      } else if (props.LogIn) {
+        alert("SignIp true")
+      }
     }
   }
 
@@ -54,7 +74,7 @@ export default function TransitionsModal(props) {
     showInputs = (
       <div>
         <TextField
-          onChange={e => setInputUserNameValue(e.target.value)}
+          onChange={e => setinputUserEmailValue(e.target.value)}
           id="standard-full-width"
           label={"Email address"}
           placeholder={"Add Your Email Address"}
@@ -63,7 +83,7 @@ export default function TransitionsModal(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          value={inputUserNameValue}
+          value={inputUserEmailValue}
         />
         <TextField
           onChange={e => setInputPasswordValue(e.target.value)}
