@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -46,12 +46,12 @@ export default function TransitionsModal(props) {
   const auth = Firebase.auth();
   const db = Firebase.firestore();
 
+  const [closeModal, setcloseModal] = useState(false);
 
   const submit = e => {
     e.preventDefault();
     if(!inputUserEmailValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
     else {
-      alert("In development!")
       console.log(inputUserEmailValue);
       console.log(inputPasswordValue);
 
@@ -60,13 +60,34 @@ export default function TransitionsModal(props) {
           .then(res => {
             console.log(res);
             console.log(res.user);
-            handleClose;
+            setOpen(false);
+            setinputUserEmailValue("");
+            setInputPasswordValue("");
           });
 
       } else if (props.LogIn) {
-        alert("SignIp true")
+        auth.signInWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)
+          .then(res => {
+            console.log(res);
+            console.log(res.user);
+            setOpen(false);
+            setinputUserEmailValue("");
+            setInputPasswordValue("");
+          });
       }
     }
+  }
+
+  const handleLogOut = e => {
+    // LogOut
+    auth.signOut()
+      .then(() => {
+        alert("you are logout");
+        console.log("user signed out");
+        setOpen(false);
+      });
+
+
   }
 
   let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
@@ -98,8 +119,18 @@ export default function TransitionsModal(props) {
           value={inputPasswordValue}
           type="password"
         />
-        <Button onSubmit={submit} clicked={submit} label={props.buttonLabel}></Button>
+        <Button clicked={handleClose} label={props.buttonLabel}></Button>
+        <Button onSubmit={submit} color={"red"} clicked={submit} label={props.buttonLabel2}></Button>
         </div>
+    )
+  }
+
+  if (props.label === "LogOut") {
+    showInputs = (
+      <div>
+          <Button clicked={handleClose}  label={props.buttonLabel}></Button>
+          <Button clicked={handleLogOut} color={"red"} label={props.buttonLabel2}></Button>
+      </div>
     )
   }
 

@@ -19,7 +19,7 @@ const MyButton = styled(Button)({
     background: "rgba(255, 105, 135, .5)",
   },
   marginTop: "5px",
-  marginLeft: "5px"
+  marginRight: "5px"
 });
 
 
