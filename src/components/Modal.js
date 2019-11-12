@@ -42,7 +42,11 @@ export default function TransitionsModal(props) {
   const submit = e => {
     e.preventDefault();
     if(!inputUserNameValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
-    else { alert("In development!") }
+    else {
+      alert("In development!")
+      console.log(inputUserNameValue);
+      console.log(inputPasswordValue);
+    }
   }
 
   let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
@@ -72,6 +76,7 @@ export default function TransitionsModal(props) {
             shrink: true,
           }}
           value={inputPasswordValue}
+          type="password"
         />
         <Button onSubmit={submit} clicked={submit} label={props.buttonLabel}></Button>
         </div>

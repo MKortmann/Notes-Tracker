@@ -40,5 +40,34 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD0H1WVBIhIFBsAPgdxsh9Evzc5R5O3r-k",
+      authDomain: "notes-tracker-d796b.firebaseapp.com",
+      databaseURL: "https://notes-tracker-d796b.firebaseio.com",
+      projectId: "notes-tracker-d796b",
+      // storageBucket: "notes-tracker-d796b.appspot.com",
+      // messagingSenderId: "10466260938",
+      // appId: "1:10466260938:web:d3c9eeb90cb3b8c27ec133",
+      // measurementId: "G-BJEQKX44B3"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
   </body>
 </html>
