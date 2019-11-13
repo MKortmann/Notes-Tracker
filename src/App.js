@@ -6,6 +6,7 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import Item from "./components/Item";
 import { db, auth } from "./components/Modal";
+import Paper from "./components/Paper";
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
 import 'typeface-roboto';
@@ -29,7 +30,7 @@ class App extends Component {
     selectedList: 0,
     inputListValue: "",
     inputItemValue: "",
-    checkData: []
+    outputPaperMsg: null
   }
 
   componentDidMount() {
@@ -45,12 +46,13 @@ class App extends Component {
         auth.onAuthStateChanged( user => {
           if(user) {
             this.setState({
-              checkData: checkData["container"],
-              container: checkData["container"]
+              container: checkData["container"],
+              outputPaperMsg: null
             })
           } else {
             this.setState({
-              container: []
+              container: [],
+              outputPaperMsg: <Paper />
             })
           }
         })
@@ -220,6 +222,7 @@ class App extends Component {
       <div className="App">
         <Grid className="App" container direction="row" justify="center" alignItems="center">
           <Navbar />
+          {this.state.outputPaperMsg}
           <Grid item xs={6}>
             <form onSubmit={this.addList}>
               <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>

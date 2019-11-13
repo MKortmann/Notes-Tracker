@@ -124,8 +124,8 @@ export default function TransitionsModal(props) {
           value={inputPasswordValue}
           type="password"
         />
-        <Button clicked={handleClose} label={props.buttonLabel}></Button>
         <Button onSubmit={submit} color={"red"} clicked={submit} label={props.buttonLabel2}></Button>
+        <Button clicked={handleClose} label={props.buttonLabel}></Button>
         </div>
     )
   }
