@@ -5,11 +5,13 @@ import Navbar from "./components/Navbar";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import Item from "./components/Item";
+import { db, auth } from "./components/Modal";
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
 import 'typeface-roboto';
 
 class App extends Component {
+
 // container: we have here a container that store all the list + items and the respective subitems
 // selectedList and SelectedItem: help to track which list and item we have seletected!
 // inputListValue and inputItemValue get the input of the keyboard to store the value in the container
@@ -17,16 +19,33 @@ class App extends Component {
     container:
       [ // TREE CONTAINER STORE
         // {
-        // id: "item1", items: [
+        // id: "List1", items: [
                               // {
-                                    // id: "subitem1", items: []
+                                    // id: "subitem1", subitems: []
                               // }
                             // ]
         // }
       ],
     selectedList: 0,
     inputListValue: "",
-    inputItemValue: ""
+    inputItemValue: "",
+    checkData: []
+  }
+
+  componentDidMount() {
+    // get data from firebase
+    db.collection("containers").get().then( snapshot => {
+        // console.log(snapshot.docs.data());
+        let checkData = null;
+        snapshot.forEach((doc, index) => {
+          checkData = doc.data();
+        })
+
+          this.setState({
+            checkData: checkData["container"],
+            container: checkData["container"]
+          })
+        })
   }
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList

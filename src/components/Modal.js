@@ -24,10 +24,9 @@ const useStyles = makeStyles(theme => ({
 
 // make auth and firestore references
 export const auth = Firebase.auth();
+export const db = Firebase.firestore();
 
 export default function TransitionsModal(props) {
-
-  const db = Firebase.firestore();
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
