@@ -42,6 +42,7 @@ export default function TransitionsModal(props) {
   // THE VALUE WILL BE FILLED WITH THE KEYBOARD INPUT
   // SETTED ON THE RETURN VALUE
   const  [inputUserEmailValue, setinputUserEmailValue] = useState("");
+  const  [inputUserEmailValueAccount, setinputUserEmailValueAccount] = useState("");
   const  [inputPasswordValue, setInputPasswordValue] = useState("");
 
 
@@ -83,19 +84,28 @@ export default function TransitionsModal(props) {
       .then(() => {
         console.log("user signed out");
         setOpen(false);
+        setinputUserEmailValue("");
+        setInputPasswordValue("");
       });
   }
 
-  // // Listen for auth status changes
-  // auth.onAuthStateChanged(user => {
-  //   if(user) {
-  //     console.log("The user is online")
-  //   } else {
-  //     console.log("The user is offline")
-  //   }
-  // });
+  // // Listen for auth status changes to get the user info!
+  auth.onAuthStateChanged(user => {
+    if(user) {
+      setinputUserEmailValueAccount(user.email);
+    }
+  });
 
   let showInputs = <Button clicked={handleClose} label={props.buttonLabel}></Button>;
+
+  if (props.showAccount) {
+    showInputs = (
+      <div>
+        <p>Logged in as: {inputUserEmailValueAccount}</p>
+        <Button clicked={handleClose} label={props.buttonLabel}></Button>
+      </div>);
+  }
+
   if (props.showInputs) {
     showInputs = (
       <div>

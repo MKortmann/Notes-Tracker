@@ -34,22 +34,34 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     // get data from firebase
     auth.onAuthStateChanged( user => {
-      let checkData = null;
+      let checkData = [];
+      // db.collection("containers").get().then( snapshot => {
+      // work as the same commented line above, but it sets also a lister do the
+      // database! It is like a picture how the collection look at this time.
+      // db.collection("containers").onSnapshot( snapshot => {
       db.collection("containers").get().then( snapshot => {
         // console.log(snapshot.docs.data());
         snapshot.forEach((doc, index) => {
-          checkData = doc.data();
+          checkData.push(doc.data());
         })
 
       if(user) {
+        const getFullContainer = [];
+        checkData.forEach(item => {
+          getFullContainer.push(item.container)
+        })
+
         this.setState({
-          container: checkData["container"],
+          container: getFullContainer,
           outputPaperMsg: null
         })
       }
-      })
+    }).catch(err => {
+      console.log("Please check your internet connection and try to logIn again." + `${err.message}`)
+    })
 
       if(!user) {
         this.setState({
@@ -58,9 +70,7 @@ class App extends Component {
         })
       }
     })
-
-
-  }
+}
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList
   addItem = (e) => {
@@ -82,6 +92,14 @@ class App extends Component {
       container: container,
       inputListValue: ""
     })
+    const containerToDB = {container: {id: `${this.state.inputListValue}-${id}`, items: [  ] } };
+    // saving also to Firebase Database
+    db.collection("containers").add(containerToDB)
+      .then(() => {
+        alert("worked!");
+      })
+
+
   }
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
