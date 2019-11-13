@@ -35,29 +35,31 @@ class App extends Component {
 
   componentDidMount() {
     // get data from firebase
-    db.collection("containers").get().then( snapshot => {
+    auth.onAuthStateChanged( user => {
+      let checkData = null;
+      db.collection("containers").get().then( snapshot => {
         // console.log(snapshot.docs.data());
-        let checkData = null;
         snapshot.forEach((doc, index) => {
           checkData = doc.data();
         })
 
-
-        auth.onAuthStateChanged( user => {
-          if(user) {
-            this.setState({
-              container: checkData["container"],
-              outputPaperMsg: null
-            })
-          } else {
-            this.setState({
-              container: [],
-              outputPaperMsg: <Paper />
-            })
-          }
+      if(user) {
+        this.setState({
+          container: checkData["container"],
+          outputPaperMsg: null
         })
+      }
+      })
 
+      if(!user) {
+        this.setState({
+          container: [],
+          outputPaperMsg: <Paper />
         })
+      }
+    })
+
+
   }
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList
