@@ -41,10 +41,20 @@ class App extends Component {
           checkData = doc.data();
         })
 
-          this.setState({
-            checkData: checkData["container"],
-            container: checkData["container"]
-          })
+
+        auth.onAuthStateChanged( user => {
+          if(user) {
+            this.setState({
+              checkData: checkData["container"],
+              container: checkData["container"]
+            })
+          } else {
+            this.setState({
+              container: []
+            })
+          }
+        })
+
         })
   }
 
