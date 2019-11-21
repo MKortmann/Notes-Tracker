@@ -35,46 +35,74 @@ class App extends Component {
 
   componentDidMount() {
 
+    let data = [];
+
     // get data from firebase
     auth.onAuthStateChanged( user => {
-      let checkData = [];
+
       // db.collection("containers").get().then( snapshot => {
       // work as the same commented line above, but it sets also a lister do the
       // database! It is like a picture how the collection look at this time.
       // db.collection("containers").onSnapshot( snapshot => {
       // db.collection("containers").get().then( snapshot => {
-      db.collection("containers").get().then( snapshot => {
-        // console.log(snapshot.docs.data());
-        snapshot.forEach((doc, index) => {
-          checkData.push(doc.data());
+      // db.collection("containers").get().then( snapshot => {
+      // GET DATA FROM A SPECIFIC COLLECTION
+      let collection = db.collection("containers").doc("c2aqgjhasdiukPshaFax");
+
+      // collection.get().then( snapshot => {
+
+      collection.get().then( doc => {
+        console.log("Document data:", doc.data());
+        // debugger
+        // data.push(doc.data().container[0]);
+
+        doc.data().container.forEach(item => {
+          data.push(item);
         })
 
+
+
+
+        // console.log(`[COLLECTION]: ${snapshot}`);
+        // // console.log(snapshot.docs.data());
+                // doc.forEach((doc, index) => {
+                //   debugger
+                //   checkData.push(doc.data());
+                // })
+
+      //   // checkData = doc.data();
+      //   debugger
       if(user) {
-        const getFullContainer = [];
-        checkData.forEach(item => {
-          getFullContainer.push(item.container)
-        })
-
         this.setState({
-          container: getFullContainer,
-          outputPaperMsg: null
+          container: data
         })
       }
-    }).catch(err => {
+        // debugger
+        // this.setState({
+        //   container: doc.data().container,
+        //   outputPaperMsg: null
+        // })
+
+      // }
+
+    })
+    .catch(err => {
       console.log("Please check your internet connection and try to logIn again." + `${err.message}`)
     })
 
-    db.collection("users").doc(user.uid).get().then(doc => {
 
-      console.log(doc.data().container)
-    })
-      if(!user) {
-        this.setState({
-          container: [],
-          outputPaperMsg: <Paper />
-        })
-      }
-    })
+    // db.collection("users").doc(user.uid).get().then(doc => {
+    //
+    //   console.log(doc.data().container)
+    // })
+    //   if(!user) {
+    //     this.setState({
+    //       container: [],
+    //       outputPaperMsg: <Paper />
+    //     })
+    //   }
+    // })
+  })
 }
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList
@@ -86,8 +114,8 @@ class App extends Component {
       container: container,
       inputItemValue: ""
     })
-    debugger
-    db.collection("containers").doc("FFBd27lHExs0LhEaJSSh").set({
+
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
       container: container
     })
     .then(() => {
@@ -107,7 +135,9 @@ class App extends Component {
     // sending data to firebase
     const containerToDB = {container: {id: `${this.state.inputListValue}-${id}`, items: [  ] } };
     // saving also to Firebase Database
-    db.collection("containers").add(containerToDB)
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+      container: container
+    })
       .then(() => {
         alert("worked!");
       })
@@ -122,6 +152,15 @@ class App extends Component {
       container: container,
       inputItemValue: ""
     })
+
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+      container: container
+    })
+    .then(() => {
+      alert("subitem added!");
+    })
+
+
   }
 // To save item name at each keyboard input at the state
   saveItem = (e) => {
