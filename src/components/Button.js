@@ -27,7 +27,7 @@ const MyButton = styled(Button)({
 function button (props) {
   return (
     <React.Fragment>
-      <MyButton onClick={props.clicked} variant="contained" color="default" style={{background: props.color}}  endIcon={<Icon onClick={props.listItemClicked}>{props.icon}</Icon>} >
+      <MyButton onClick={props.clicked} variant="contained" color="default" style={{background: props.color}}  endIcon={<Icon onClick={props.listDeleteIconClicked}>{props.icon}</Icon>} >
         {props.label}
       </MyButton>
     </React.Fragment>

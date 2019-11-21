@@ -172,11 +172,17 @@ class App extends Component {
   }
   // REMOVE ITEMS
   itemRemove = (id) => {
-    debugger
     let container = [...this.state.container];
     container[this.state.selectedList].items.splice(id, 1);
     this.setState({
       container: container
+    })
+
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+      container: container
+    })
+    .then(() => {
+      alert("item added!");
     })
   }
   // REMOVE SUBITEMS
@@ -185,6 +191,13 @@ class App extends Component {
     container[this.state.selectedList].items[itemId].subitems.splice(subItemId, 1);
     this.setState({
       container: container
+    })
+
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+      container: container
+    })
+    .then(() => {
+      alert("item added!");
     })
   }
   // SET THE ACTIVE LIST TO BE DISPLAYED
@@ -198,7 +211,7 @@ class App extends Component {
   }
 
   // DELETE the LIST
-  listItemClicked = (id) => {
+  removeList = (id) => {
     const container = [...this.state.container];
     // here we check for the exactly name that is the key(id)
     container.forEach( (i, index) => {
@@ -229,7 +242,7 @@ class App extends Component {
               label={i.id}
               clicked={this.setActiveList.bind(this, i.id)}
               icon={"delete"}
-              listItemClicked={this.listItemClicked.bind(this, i.id)}
+              listDeleteIconClicked={this.removeList.bind(this, i.id)}
               color={"red"}
 
               />
@@ -241,7 +254,7 @@ class App extends Component {
               label={i.id}
               clicked={this.setActiveList.bind(this, i.id)}
               icon={"delete"}
-              listItemClicked={this.listItemClicked.bind(this, i.id)}
+              listDeleteIconClicked={this.removeList.bind(this, i.id)}
               />
           )
         }
