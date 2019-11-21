@@ -90,7 +90,7 @@ const Item = (props) => {
     console.log(`USE EFFECT TRIGGERED`);
     const newSubItem = [...props.arraySubItems];
     setSubItems(newSubItem);
-  }, [props.label.name])
+  }, [props.label])
 
   // ONLY RE-RENDER IF THE NUMBER OF SUBITEMS CHANGED: used to delete subitems and
   // rerender it!!!
@@ -109,7 +109,7 @@ const Item = (props) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Typography style={{fontSize: "25px"}}>{props.label.name}</Typography>
+        <Typography style={{fontSize: "25px"}}>{props.label}</Typography>
       </Grid>
       <Grid item xs={4}>
         <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer", fontSize: "40px"}}>{arrowDesign}</Icon>

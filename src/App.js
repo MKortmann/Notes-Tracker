@@ -109,7 +109,7 @@ class App extends Component {
   addItem = (e) => {
     e.preventDefault();
     const container = [...this.state.container];
-    container[this.state.selectedList].items.push({name: this.state.inputItemValue, subitems: []});
+    container[this.state.selectedList].items.push({id: this.state.inputItemValue, subitems: []});
     this.setState({
       container: container,
       inputItemValue: ""
@@ -119,7 +119,7 @@ class App extends Component {
       container: container
     })
     .then(() => {
-      alert("item added!");
+      alert("ITEM ADDED!");
     })
   }
 // ADD: a new LIST to the container!
@@ -139,7 +139,7 @@ class App extends Component {
       container: container
     })
       .then(() => {
-        alert("worked!");
+        alert("LIST ADDED!");
       })
 
 
@@ -157,7 +157,7 @@ class App extends Component {
       container: container
     })
     .then(() => {
-      alert("subitem added!");
+      alert("SUBITEM ADDED!");
     })
 
 
@@ -182,7 +182,7 @@ class App extends Component {
       container: container
     })
     .then(() => {
-      alert("item added!");
+      alert("ITEM removed!");
     })
   }
   // REMOVE SUBITEMS
@@ -228,6 +228,14 @@ class App extends Component {
     this.setState({
       container: container,
     })
+
+    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+      container: container
+    })
+    .then(() => {
+      alert("list removed!");
+    })
+
   }
 
   render () {
@@ -291,7 +299,7 @@ class App extends Component {
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-            <Item label={i} selectedItem={index}
+            <Item label={i.id} selectedItem={index}
               arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
               addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
               styleBackground={styleBackground}
