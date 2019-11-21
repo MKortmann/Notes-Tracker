@@ -56,14 +56,17 @@ export default function TransitionsModal(props) {
       console.log(inputPasswordValue);
 
       if(props.signUp) {
+        const array = [];
         auth.createUserWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)
           .then(res => {
-            console.log(res);
-            console.log(res.user);
+            return db.collection("users").doc(res.user.uid).set({
+              container: array
+            })
+          }).then(() => {
             setOpen(false);
             setinputUserEmailValue("");
             setInputPasswordValue("");
-          });
+          })
 
       } else if (props.LogIn) {
         auth.signInWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)

@@ -42,6 +42,7 @@ class App extends Component {
       // work as the same commented line above, but it sets also a lister do the
       // database! It is like a picture how the collection look at this time.
       // db.collection("containers").onSnapshot( snapshot => {
+      // db.collection("containers").get().then( snapshot => {
       db.collection("containers").get().then( snapshot => {
         // console.log(snapshot.docs.data());
         snapshot.forEach((doc, index) => {
@@ -63,6 +64,10 @@ class App extends Component {
       console.log("Please check your internet connection and try to logIn again." + `${err.message}`)
     })
 
+    db.collection("users").doc(user.uid).get().then(doc => {
+
+      console.log(doc.data().container)
+    })
       if(!user) {
         this.setState({
           container: [],
@@ -81,6 +86,13 @@ class App extends Component {
       container: container,
       inputItemValue: ""
     })
+    debugger
+    db.collection("containers").doc("FFBd27lHExs0LhEaJSSh").set({
+      container: container
+    })
+    .then(() => {
+      alert("item added!");
+    })
   }
 // ADD: a new LIST to the container!
   addList = (e) => {
@@ -92,6 +104,7 @@ class App extends Component {
       container: container,
       inputListValue: ""
     })
+    // sending data to firebase
     const containerToDB = {container: {id: `${this.state.inputListValue}-${id}`, items: [  ] } };
     // saving also to Firebase Database
     db.collection("containers").add(containerToDB)
