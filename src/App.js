@@ -18,11 +18,11 @@ class App extends Component {
 // inputListValue and inputItemValue get the input of the keyboard to store the value in the container
   state = {
     container:
-      [ // TREE CONTAINER STORE
+      [ // TREE CONTAINER STORE: THE FIXED KEYS HAVE UPPER-CASE (trying to make it understandable)
         // {
-        // id: "List1", items: [
+        // LIST: "List1", ITEMS: [
                               // {
-                                    // id: "subitem1", subitems: []
+                                    // ITEM: "item", SUBITEMS: []
                               // }
                             // ]
         // }
@@ -109,7 +109,7 @@ class App extends Component {
   addItem = (e) => {
     e.preventDefault();
     const container = [...this.state.container];
-    container[this.state.selectedList].items.push({id: this.state.inputItemValue, subitems: []});
+    container[this.state.selectedList].ITEMS.push({ITEM: this.state.inputItemValue, SUBITEMS: []});
     this.setState({
       container: container,
       inputItemValue: ""
@@ -127,13 +127,13 @@ class App extends Component {
     e.preventDefault();
     const container = [...this.state.container];
     const id = container.length + 1;
-    container.push( {id: `${this.state.inputListValue}-${id}`, items: [  ] } );
+    container.push( {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } );
     this.setState({
       container: container,
       inputListValue: ""
     })
     // sending data to firebase
-    const containerToDB = {container: {id: `${this.state.inputListValue}-${id}`, items: [  ] } };
+    const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
     // saving also to Firebase Database
     db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
       container: container
@@ -147,7 +147,7 @@ class App extends Component {
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
     const container = [...this.state.container];
-    container[this.state.selectedList].items[selectedItem].subitems.push(subitem);
+    container[this.state.selectedList].ITEMS[selectedItem].SUBITEMS.push(subitem);
     this.setState({
       container: container,
       inputItemValue: ""
@@ -173,7 +173,7 @@ class App extends Component {
   // REMOVE ITEMS
   itemRemove = (id) => {
     let container = [...this.state.container];
-    container[this.state.selectedList].items.splice(id, 1);
+    container[this.state.selectedList].ITEMS.splice(id, 1);
     this.setState({
       container: container
     })
@@ -188,7 +188,7 @@ class App extends Component {
   // REMOVE SUBITEMS
   subItemRemove = (itemId, subItemId) => {
     let container = [...this.state.container];
-    container[this.state.selectedList].items[itemId].subitems.splice(subItemId, 1);
+    container[this.state.selectedList].ITEMS[itemId].SUBITEMS.splice(subItemId, 1);
     this.setState({
       container: container
     })
@@ -215,15 +215,15 @@ class App extends Component {
     const container = [...this.state.container];
     // here we check for the exactly name that is the key(id)
     container.forEach( (i, index) => {
-      if(i.id === id) {
+      if(i.LIST === id) {
         container.splice(index, 1);
       }
     })
     // AFTER DELETING A LIST WE HAVE TO REORDERING IT
     container.forEach( (id, index) => {
-      const newString = id.id.substring(0, id.id.length -1);
+      const newString = id.LIST.substring(0, id.LIST.length -1);
       const number = index + 1;
-      id.id = newString + number;
+      id.LIST = newString + number;
     })
     this.setState({
       container: container,
@@ -246,11 +246,11 @@ class App extends Component {
         if(this.state.selectedList === index) {
           return (
             <Button
-              key={i.id}
-              label={i.id}
-              clicked={this.setActiveList.bind(this, i.id)}
+              key={i.LIST}
+              label={i.LIST}
+              clicked={this.setActiveList.bind(this, i.LIST)}
               icon={"delete"}
-              listDeleteIconClicked={this.removeList.bind(this, i.id)}
+              listDeleteIconClicked={this.removeList.bind(this, i.LIST)}
               color={"red"}
 
               />
@@ -258,11 +258,11 @@ class App extends Component {
         } else {
           return (
             <Button
-              key={i.id}
-              label={i.id}
-              clicked={this.setActiveList.bind(this, i.id)}
+              key={i.LIST}
+              label={i.LIST}
+              clicked={this.setActiveList.bind(this, i.LIST)}
               icon={"delete"}
-              listDeleteIconClicked={this.removeList.bind(this, i.id)}
+              listDeleteIconClicked={this.removeList.bind(this, i.LIST)}
               />
           )
         }
@@ -293,14 +293,14 @@ class App extends Component {
   // render only if the list has items
   if (this.state.container[this.state.selectedList]) {
   itemsToBeRender =  (
-      this.state.container[this.state.selectedList].items.map((i, index) => {
+      this.state.container[this.state.selectedList].ITEMS.map((i, index) => {
         let styleBackground = null;
         styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <div key={index}  style={{background: styleBackground}}>
-            <Item label={i.id} selectedItem={index}
-              arraySubItems={this.state.container[this.state.selectedList].items[index].subitems}
+            <Item label={i.ITEM} selectedItem={index}
+              arraySubItems={this.state.container[this.state.selectedList].ITEMS[index].SUBITEMS}
               addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
               styleBackground={styleBackground}
               clicked={this.itemRemove.bind(this, index)}
