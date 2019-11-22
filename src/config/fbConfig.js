@@ -4,7 +4,7 @@ import "firebase/auth"
 
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
+let firebaseConfig = {
   apiKey: "AIzaSyD0H1WVBIhIFBsAPgdxsh9Evzc5R5O3r-k",
   authDomain: "notes-tracker-d796b.firebaseapp.com",
   databaseURL: "https://notes-tracker-d796b.firebaseio.com",

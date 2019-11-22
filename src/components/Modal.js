@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -46,9 +46,6 @@ export default function TransitionsModal(props) {
   const  [inputPasswordValue, setInputPasswordValue] = useState("");
   const  [token, setToken] = useState(null);
 
-
-  const [closeModal, setcloseModal] = useState(false);
-
   const submit = e => {
     e.preventDefault();
 
@@ -59,7 +56,6 @@ export default function TransitionsModal(props) {
 
       if(props.signUp) {
 
-        const array = [];
         auth.createUserWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)
           .then(res => {
 

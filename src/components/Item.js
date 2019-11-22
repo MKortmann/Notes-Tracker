@@ -23,9 +23,17 @@ function Todo(props) {
 
  let newStyleBackground = (props.styleBackground === "#F6F9FA" ) ? '#E8A9B1' : "white"
 
+ const [strike, setStrike] = useState(false);
+
+ let deco = strike ? 'line-through' : null;
+
+ const clicked = () => {
+   strike ? setStrike(false) : setStrike(true);
+ }
+
   return (
-    <div style={{background: newStyleBackground, margin: "8px"}}>
-      <Typography>{props.todo}</Typography>
+    <div style={{background: newStyleBackground, margin: "8px", textDecorationLine: deco, cursor: "pointer"}}>
+      <Typography onClick={clicked}>{props.todo}</Typography>
     </div>
   )
 }

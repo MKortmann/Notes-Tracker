@@ -63,7 +63,7 @@ class App extends Component {
           })
     })
     .catch(err => {
-      console.log("The user has no data" + `${err.message}`);
+      console.log(`The user has no data ${err.message}`);
       // used to clear state: when user logOut
       this.setState({
         container: [],

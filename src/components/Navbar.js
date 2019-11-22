@@ -3,12 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Button from "@material-ui/core/Button";
 import Modal, { auth } from "./Modal";
-import Firebase from "../config/fbConfig";
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +41,7 @@ export default function ButtonAppBar(props) {
   auth.onAuthStateChanged(user => {
     if(user) {
       console.log("The user is online")
-      setUserIsOnline(true); 
+      setUserIsOnline(true);
 
     } else {
       console.log("The user is offline")
