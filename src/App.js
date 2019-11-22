@@ -54,10 +54,6 @@ class App extends Component {
       if(localStorage.getItem("token") !== null && user) {
         token = localStorage.getItem("token");
 
-        this.setState({
-          token: token
-        })
-
         // GET DATA FROM A SPECIFIC COLLECTION
         let collection = db.collection("containers").doc(token);
 
@@ -70,6 +66,12 @@ class App extends Component {
 
           doc.data().container.forEach(item => {
             data.push(item);
+          })
+
+          
+          this.setState({
+            token: token,
+            container: data
           })
     })
     .catch(err => {
@@ -222,6 +224,13 @@ class App extends Component {
       alert("list removed!");
     })
   }
+
+  // updating token: updating the token in case of signIn or signUp
+  // updateToken = (token) => {
+  //   this.setState({
+  //     token: token
+  //   })
+  // }
 
   render () {
 
