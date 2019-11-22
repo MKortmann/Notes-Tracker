@@ -56,12 +56,18 @@ export default function TransitionsModal(props) {
       console.log(inputPasswordValue);
 
       if(props.signUp) {
+
         const array = [];
         auth.createUserWithEmailAndPassword(inputUserEmailValue, inputPasswordValue)
           .then(res => {
-            return db.collection("users").doc(res.user.uid).set({
-              container: array
-            })
+            // return db.collection("users").doc(res.user.uid).set({
+            //   container: array
+            // })
+            console.log("The user id is:" + res.user.uid)
+            // saving the token of this user to local storage
+            localStorage.setItem("token", JSON.stringify(res.user.uid));
+
+
           }).then(() => {
             setOpen(false);
             setinputUserEmailValue("");
@@ -73,6 +79,11 @@ export default function TransitionsModal(props) {
           .then(res => {
             console.log(res);
             console.log(res.user);
+            // ALWAYS SETTING IT, so it will update with diff. users!
+            // if(localStorage.getItem("token") === null) {
+              // saving the token of this user to local storage
+              localStorage.setItem("token", JSON.stringify(res.user.uid));
+            // }
             setOpen(false);
             setinputUserEmailValue("");
             setInputPasswordValue("");
@@ -81,6 +92,7 @@ export default function TransitionsModal(props) {
     }
   }
 
+  // LOGOUT
   const handleLogOut = e => {
     // LogOut
     auth.signOut()

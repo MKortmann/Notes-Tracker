@@ -30,7 +30,8 @@ class App extends Component {
     selectedList: 0,
     inputListValue: "",
     inputItemValue: "",
-    outputPaperMsg: null
+    outputPaperMsg: null,
+    token: null
   }
 
   componentDidMount() {
@@ -46,48 +47,33 @@ class App extends Component {
       // db.collection("containers").onSnapshot( snapshot => {
       // db.collection("containers").get().then( snapshot => {
       // db.collection("containers").get().then( snapshot => {
-      // GET DATA FROM A SPECIFIC COLLECTION
-      let collection = db.collection("containers").doc("c2aqgjhasdiukPshaFax");
 
-      // collection.get().then( snapshot => {
+      let token = null;
 
-      collection.get().then( doc => {
-        console.log("Document data:", doc.data());
-        // debugger
-        // data.push(doc.data().container[0]);
+      // retrieving specific data from this user: the user should be auth and has a token
+      if(localStorage.getItem("token") !== null && user) {
+        token = localStorage.getItem("token");
 
-        doc.data().container.forEach(item => {
-          data.push(item);
-        })
-
-
-
-
-        // console.log(`[COLLECTION]: ${snapshot}`);
-        // // console.log(snapshot.docs.data());
-                // doc.forEach((doc, index) => {
-                //   debugger
-                //   checkData.push(doc.data());
-                // })
-
-      //   // checkData = doc.data();
-      //   debugger
-      if(user) {
         this.setState({
-          container: data
+          token: token
         })
-      }
-        // debugger
-        // this.setState({
-        //   container: doc.data().container,
-        //   outputPaperMsg: null
-        // })
 
-      // }
+        // GET DATA FROM A SPECIFIC COLLECTION
+        let collection = db.collection("containers").doc(token);
 
+        // collection.get().then( snapshot => {
+
+        collection.get().then( doc => {
+          console.log("Document data:", doc.data());
+          // debugger
+          // data.push(doc.data().container[0]);
+
+          doc.data().container.forEach(item => {
+            data.push(item);
+          })
     })
     .catch(err => {
-      console.log("Please check your internet connection and try to logIn again." + `${err.message}`)
+      console.log("The user has no data" + `${err.message}`)
     })
 
 
@@ -102,7 +88,9 @@ class App extends Component {
     //     })
     //   }
     // })
+  } //if
   })
+
 }
 
 // ADD:  add a new ITEM to the items array in the respectived selectedList
@@ -115,7 +103,7 @@ class App extends Component {
       inputItemValue: ""
     })
 
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+    db.collection("containers").doc(this.state.token).set({
       container: container
     })
     .then(() => {
@@ -132,15 +120,17 @@ class App extends Component {
       container: container,
       inputListValue: ""
     })
-    // sending data to firebase
-    const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
-    // saving also to Firebase Database
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
-      container: container
-    })
-      .then(() => {
-        alert("LIST ADDED!");
+    // sending data to firebase: the user should has a token
+    if (this.state.token !== null) {
+      const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
+      // saving also to Firebase Database
+      db.collection("containers").doc(this.state.token).set({
+        container: container
       })
+        .then(() => {
+          alert("LIST ADDED!");
+        })
+    }
   }
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
@@ -151,7 +141,7 @@ class App extends Component {
       inputItemValue: ""
     })
 
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+    db.collection("containers").doc(this.state.token).set({
       container: container
     })
     .then(() => {
@@ -174,7 +164,7 @@ class App extends Component {
       container: container
     })
 
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+    db.collection("containers").doc(this.state.token).set({
       container: container
     })
     .then(() => {
@@ -189,7 +179,7 @@ class App extends Component {
       container: container
     })
 
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+    db.collection("containers").doc(this.state.token).set({
       container: container
     })
     .then(() => {
@@ -225,7 +215,7 @@ class App extends Component {
       container: container,
     })
 
-    db.collection("containers").doc("c2aqgjhasdiukPshaFax").set({
+    db.collection("containers").doc(this.state.token).set({
       container: container
     })
     .then(() => {
