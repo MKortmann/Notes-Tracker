@@ -141,8 +141,6 @@ class App extends Component {
       .then(() => {
         alert("LIST ADDED!");
       })
-
-
   }
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
@@ -159,8 +157,6 @@ class App extends Component {
     .then(() => {
       alert("SUBITEM ADDED!");
     })
-
-
   }
 // To save item name at each keyboard input at the state
   saveItem = (e) => {
@@ -197,7 +193,7 @@ class App extends Component {
       container: container
     })
     .then(() => {
-      alert("item added!");
+      alert("subitem removed!");
     })
   }
   // SET THE ACTIVE LIST TO BE DISPLAYED
@@ -235,7 +231,6 @@ class App extends Component {
     .then(() => {
       alert("list removed!");
     })
-
   }
 
   render () {
