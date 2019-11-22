@@ -51,6 +51,7 @@ export default function TransitionsModal(props) {
 
   const submit = e => {
     e.preventDefault();
+
     if(!inputUserEmailValue || !inputPasswordValue) {alert("Please, add E-Mail and Password!")}
     else {
       console.log(inputUserEmailValue);
@@ -96,6 +97,7 @@ export default function TransitionsModal(props) {
             return true
           });
       }
+
     }
   }
 
@@ -114,7 +116,7 @@ export default function TransitionsModal(props) {
         setToken(null);
         localStorage.setItem("token", null);
         console.log(`[TOKEN SET]: ${token}`);
-  
+
 
       });
   }
@@ -123,6 +125,7 @@ export default function TransitionsModal(props) {
   auth.onAuthStateChanged(user => {
     if(user) {
       setinputUserEmailValueAccount(user.email);
+      setToken(user.uid);
     }
   });
 
@@ -131,7 +134,8 @@ export default function TransitionsModal(props) {
   if (props.showAccount) {
     showInputs = (
       <div>
-        <p>Logged in as: {inputUserEmailValueAccount}</p>
+        <p>Logged: {inputUserEmailValueAccount}</p>
+        <p>Token: {token}</p>
         <Button clicked={handleClose} label={props.buttonLabel}></Button>
       </div>);
   }

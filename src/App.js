@@ -35,25 +35,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    let data = [];
+    // Each user has a token created in the moment of the SignUP!
+    // this token is used to identify the user in firebase! So we can save and
+    // retrieve data for this specific user.
     let token = null;
-
     // get data from firebase
     auth.onAuthStateChanged( user => {
-
-      // db.collection("containers").get().then( snapshot => {
-      // work as the same commented line above, but it sets also a lister do the
-      // database! It is like a picture how the collection look at this time.
-      // db.collection("containers").onSnapshot( snapshot => {
-      // db.collection("containers").get().then( snapshot => {
-      // db.collection("containers").get().then( snapshot => {
-
       // retrieving specific data from this user: the user should be auth and has a token
       if(localStorage.getItem("token") !== null && user) {
 
         token = localStorage.getItem("token");
-
         this.setState({
           token: token
         })
@@ -61,38 +52,17 @@ class App extends Component {
         // GET DATA FROM A SPECIFIC COLLECTION
         let collection = db.collection("containers").doc(token);
 
-        // collection.get().then( snapshot => {
-
-
         collection.get().then( doc => {
           console.log("Document data:", doc.data());
-          // debugger
-          // data.push(doc.data().container[0]);
-          data = [];
-          doc.data().container.forEach(item => {
-            data.push(item);
-          })
 
           this.setState({
-            container: data
+            container: doc.data().container
           })
     })
     .catch(err => {
       console.log("The user has no data" + `${err.message}`)
     })
 
-
-    // db.collection("users").doc(user.uid).get().then(doc => {
-    //
-    //   console.log(doc.data().container)
-    // })
-    //   if(!user) {
-    //     this.setState({
-    //       container: [],
-    //       outputPaperMsg: <Paper />
-    //     })
-    //   }
-    // })
   } else {
     // used to clear state: when user logOut
     this.setState({
@@ -134,7 +104,6 @@ class App extends Component {
     if (this.state.token !== null) {
       const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
       // saving also to Firebase Database
-
       db.collection("containers").doc(this.state.token).set({
         container: container
       })
@@ -233,13 +202,6 @@ class App extends Component {
       alert("list removed!");
     })
   }
-
-  // updating token: updating the token in case of signIn or signUp
-  // updateToken = (token) => {
-  //   this.setState({
-  //     token: token
-  //   })
-  // }
 
   render () {
 

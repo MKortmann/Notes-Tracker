@@ -33,8 +33,6 @@ export default function ButtonAppBar() {
     <React.Fragment>
       <Modal showAccount={true} label={"Account"} title={"Account Details"} description={""} buttonLabel={"close"}></Modal>
       <Modal showInputs={false} label={"LogOut"} title={"LogOut"} description={""} buttonLabel={"close"} buttonLabel2={"LogOut"}></Modal>
-      <Modal LogIn={true} showInputs={true} label={"LogIn"} title={"LogIn"} description={""} buttonLabel={"close"} buttonLabel2={"LogIn"}></Modal>
-      <Modal signUp={true} showInputs={true} label={"SignUp"} title={"SignUp"} description={""} buttonLabel={"close"} buttonLabel2={"SignUp"}></Modal>
     </React.Fragment>
   );
   const showNotAllMenus = (
