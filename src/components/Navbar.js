@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
 
   const [userIsOnline, setUserIsOnline] = useState(false);
@@ -46,7 +46,8 @@ export default function ButtonAppBar() {
   auth.onAuthStateChanged(user => {
     if(user) {
       console.log("The user is online")
-      setUserIsOnline(true);
+      setUserIsOnline(true); 
+
     } else {
       console.log("The user is offline")
       setUserIsOnline(false);

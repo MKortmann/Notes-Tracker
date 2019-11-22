@@ -67,14 +67,11 @@ export default function TransitionsModal(props) {
             // saving the token of this user to local storage
             localStorage.setItem("token", JSON.stringify(res.user.uid));
             setToken(res.user.uid);
-            return true
 
-          }).then(() => {
+          }).then((res) => {
             setOpen(false);
             setinputUserEmailValue("");
             setInputPasswordValue("");
-
-
           })
 
       } else if (props.LogIn) {
@@ -94,7 +91,6 @@ export default function TransitionsModal(props) {
             setToken(res.user.uid);
             console.log(`[TOKEN SET]: ${token}`);
 
-            return true
           });
       }
 

@@ -67,7 +67,7 @@ class App extends Component {
       // used to clear state: when user logOut
       this.setState({
         container: [],
-        outputPaperMsg: <Paper />
+        outputPaperMsg: null
       })
     })
 
