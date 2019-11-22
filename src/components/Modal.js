@@ -44,7 +44,7 @@ export default function TransitionsModal(props) {
   const  [inputUserEmailValue, setinputUserEmailValue] = useState("");
   const  [inputUserEmailValueAccount, setinputUserEmailValueAccount] = useState("");
   const  [inputPasswordValue, setInputPasswordValue] = useState("");
-  const  [token, setToken] = useState("");
+  const  [token, setToken] = useState(null);
 
 
   const [closeModal, setcloseModal] = useState(false);
@@ -73,6 +73,7 @@ export default function TransitionsModal(props) {
             setinputUserEmailValue("");
             setInputPasswordValue("");
 
+
           })
 
       } else if (props.LogIn) {
@@ -90,6 +91,7 @@ export default function TransitionsModal(props) {
             setInputPasswordValue("");
 
             setToken(res.user.uid);
+            console.log(`[TOKEN SET]: ${token}`);
 
             return true
           });
@@ -99,13 +101,21 @@ export default function TransitionsModal(props) {
 
   // LOGOUT
   const handleLogOut = e => {
+
+
     // LogOut
     auth.signOut()
       .then(() => {
+
         console.log("user signed out");
         setOpen(false);
         setinputUserEmailValue("");
         setInputPasswordValue("");
+        setToken(null);
+        localStorage.setItem("token", null);
+        console.log(`[TOKEN SET]: ${token}`);
+  
+
       });
   }
 

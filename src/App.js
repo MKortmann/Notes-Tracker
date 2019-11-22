@@ -68,7 +68,7 @@ class App extends Component {
             data.push(item);
           })
 
-          
+
           this.setState({
             token: token,
             container: data
@@ -90,7 +90,12 @@ class App extends Component {
     //     })
     //   }
     // })
-  } //if
+  } else {
+    // used to clear state: when user logOut
+    this.setState({
+      container: []
+    })
+  }
   })
 
 }
