@@ -10,6 +10,8 @@ import Paper from "./components/Paper";
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
 import 'typeface-roboto';
+// import the wrapper component to make "the paper like style"
+import WithPaper from "./hoc/WithPaper";
 
 class App extends Component {
 
@@ -51,7 +53,7 @@ class App extends Component {
 
         // GET DATA FROM A SPECIFIC COLLECTION
         let collection = db.collection("containers").doc(token);
-        
+
         collection.get().then( doc => {
           console.log("Document data:", doc.data());
 
@@ -97,7 +99,7 @@ class App extends Component {
           container: container
         })
         .then(() => {
-          alert("ITEM ADDED!");
+          console.log("ITEM ADDED!");
         })
       }
     });
@@ -124,7 +126,7 @@ class App extends Component {
             container: container
           })
             .then(() => {
-              alert("LIST ADDED!");
+              console.log("LIST ADDED!");
             })
         }
       }
@@ -150,7 +152,7 @@ class App extends Component {
             container: container
           })
           .then(() => {
-            alert("SUBITEM ADDED!");
+            console.log("SUBITEM ADDED!");
           })
         }
       }
@@ -184,7 +186,7 @@ class App extends Component {
             container: container
           })
           .then(() => {
-            alert("ITEM removed!");
+            console.log("ITEM removed!");
           })
         }
       }
@@ -211,7 +213,7 @@ class App extends Component {
             container: container
           })
           .then(() => {
-            alert("subitem removed!");
+            console.log("subitem removed!");
           })
         }
       }
@@ -259,7 +261,7 @@ class App extends Component {
             container: container
           })
           .then(() => {
-            alert("list removed!");
+            console.log("list removed!");
           })
         }
       }
@@ -325,17 +327,18 @@ class App extends Component {
   itemsToBeRender =  (
       this.state.container[this.state.selectedList].ITEMS.map((i, index) => {
         let styleBackground = null;
-        styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
+        // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "#C0F2FC"
+        styleBackground = (index%2 === 0 ) ? '#F6F9FA' : "#C0F2FC"
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
-          <div key={index}  style={{background: styleBackground}}>
+          <WithPaper key={index}  background={styleBackground}>
             <Item label={i.ITEM} selectedItem={index}
               arraySubItems={this.state.container[this.state.selectedList].ITEMS[index].SUBITEMS}
               addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
               styleBackground={styleBackground}
               clicked={this.itemRemove.bind(this, index)}
               id={index}/>
-          </div>
+          </WithPaper>
         )
       })
     )
@@ -358,7 +361,7 @@ class App extends Component {
           {formToAddItemsToBeRender}
           </Grid>
           <Grid item xs={12}>
-          {itemsToBeRender}
+              {itemsToBeRender}
           </Grid>
         </Grid>
       </div>

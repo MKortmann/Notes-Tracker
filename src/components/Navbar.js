@@ -57,9 +57,6 @@ export default function ButtonAppBar() {
     <React.Fragment>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h4" className={classes.title}>
             Notes Tracker
           </Typography>

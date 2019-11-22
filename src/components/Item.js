@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 // import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 
+
 /* IN THIS CASE TO IMPROVE THE READABILITY I ADDING THREE COMPONENTS IN THIS FILE
 WE HAVE THREE COMPONENTS:
 1) Todo (stateless component): only return the subitems that are the Todos
@@ -20,7 +21,7 @@ to the container in APP.js
 // using direct destructuring in the func argument.
 function Todo(props) {
 
- let newStyleBackground = (props.styleBackground === "white" ) ? '#E8A9B1' : "white"
+ let newStyleBackground = (props.styleBackground === "#F6F9FA" ) ? '#E8A9B1' : "white"
 
   return (
     <div style={{background: newStyleBackground, margin: "8px"}}>
@@ -43,28 +44,28 @@ function InputTodo({addTodo}) {
   }
 
   return (
-    <Grid container>
-      <Grid item xs={6}>
-        <form onSubmit={submit}>
-          <TextField
-            id="standard-full-width"
-            onChange={e => setInputValue(e.target.value)}
-            label={"Add Your SubItem"}
-            style={{ margin: 8 }}
-            placeholder={"Add Your SubItem"}
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={inputValue}
-          />
-        </form>
+      <Grid container>
+        <Grid item xs={6}>
+          <form onSubmit={submit}>
+            <TextField
+              id="standard-full-width"
+              onChange={e => setInputValue(e.target.value)}
+              label={"Add Your SubItem"}
+              style={{ margin: 8 }}
+              placeholder={"Add Your SubItem"}
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={inputValue}
+            />
+          </form>
+        </Grid>
+        <Grid item xs={6}>
+          <Icon onClick={submit} style={{cursor: "pointer", fontSize: 40}} color="secondary" aria-label="add">add_circle</Icon>
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        <Icon onClick={submit} style={{cursor: "pointer", fontSize: 40}} color="secondary" aria-label="add">add_circle</Icon>
-      </Grid>
-    </Grid>
   )
 }
 
@@ -137,6 +138,7 @@ const Item = (props) => {
         </React.Fragment>
     : null }
     </Grid>
+
   )
 }
 
