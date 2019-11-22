@@ -51,22 +51,29 @@ class App extends Component {
 
         // GET DATA FROM A SPECIFIC COLLECTION
         let collection = db.collection("containers").doc(token);
-
+        
         collection.get().then( doc => {
           console.log("Document data:", doc.data());
 
           this.setState({
-            container: doc.data().container
+            container: doc.data().container,
+            outputPaperMsg: null
           })
     })
     .catch(err => {
-      console.log("The user has no data" + `${err.message}`)
+      console.log("The user has no data" + `${err.message}`);
+      // used to clear state: when user logOut
+      this.setState({
+        container: [],
+        outputPaperMsg: <Paper />
+      })
     })
 
   } else {
     // used to clear state: when user logOut
     this.setState({
-      container: []
+      container: [],
+      outputPaperMsg: <Paper />
     })
   }
   })
@@ -83,12 +90,18 @@ class App extends Component {
       inputItemValue: ""
     })
 
-    db.collection("containers").doc(this.state.token).set({
-      container: container
-    })
-    .then(() => {
-      alert("ITEM ADDED!");
-    })
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        db.collection("containers").doc(this.state.token).set({
+          container: container
+        })
+        .then(() => {
+          alert("ITEM ADDED!");
+        })
+      }
+    });
+
   }
 // ADD: a new LIST to the container!
   addList = (e) => {
@@ -100,17 +113,23 @@ class App extends Component {
       container: container,
       inputListValue: ""
     })
-    // sending data to firebase: the user should has a token
-    if (this.state.token !== null) {
-      const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
-      // saving also to Firebase Database
-      db.collection("containers").doc(this.state.token).set({
-        container: container
-      })
-        .then(() => {
-          alert("LIST ADDED!");
-        })
-    }
+
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+            .then(() => {
+              alert("LIST ADDED!");
+            })
+        }
+      }
+    });
+
   }
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
@@ -121,12 +140,23 @@ class App extends Component {
       inputItemValue: ""
     })
 
-    db.collection("containers").doc(this.state.token).set({
-      container: container
-    })
-    .then(() => {
-      alert("SUBITEM ADDED!");
-    })
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            alert("SUBITEM ADDED!");
+          })
+        }
+      }
+    });
+
+
   }
 // To save item name at each keyboard input at the state
   saveItem = (e) => {
@@ -144,12 +174,23 @@ class App extends Component {
       container: container
     })
 
-    db.collection("containers").doc(this.state.token).set({
-      container: container
-    })
-    .then(() => {
-      alert("ITEM removed!");
-    })
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            alert("ITEM removed!");
+          })
+        }
+      }
+    });
+
+
   }
   // REMOVE SUBITEMS
   subItemRemove = (itemId, subItemId) => {
@@ -159,12 +200,25 @@ class App extends Component {
       container: container
     })
 
-    db.collection("containers").doc(this.state.token).set({
-      container: container
-    })
-    .then(() => {
-      alert("subitem removed!");
-    })
+
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            alert("subitem removed!");
+          })
+        }
+      }
+    });
+
+
+
   }
   // SET THE ACTIVE LIST TO BE DISPLAYED
   setActiveList = (id) => {
@@ -195,12 +249,23 @@ class App extends Component {
       container: container,
     })
 
-    db.collection("containers").doc(this.state.token).set({
-      container: container
-    })
-    .then(() => {
-      alert("list removed!");
-    })
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            alert("list removed!");
+          })
+        }
+      }
+    });
+
+
   }
 
   render () {

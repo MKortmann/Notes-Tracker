@@ -11,6 +11,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#00474F",
     color: "white"
   },
+  smallnotes: {
+    // padding: theme.spacing(3, 2,2,2),
+    marginTop: "10px",
+    backgroundColor: 'rgba(0,212,255,0.5)',
+    color: "black"
+  }
 }));
 
 export default function PaperSheet() {
@@ -25,6 +31,11 @@ export default function PaperSheet() {
           </Typography>
           <Typography component="p">
             Please, LogIn/SignUp to be able to store and retrieve your data.
+          </Typography>
+        </Paper>
+        <Paper className={classes.smallnotes}>
+          <Typography component="p">
+            You are in test mode! All your notes are only temporary saved.
           </Typography>
         </Paper>
       </Grid>
