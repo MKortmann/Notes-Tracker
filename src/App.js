@@ -37,6 +37,7 @@ class App extends Component {
   componentDidMount() {
 
     let data = [];
+    let token = null;
 
     // get data from firebase
     auth.onAuthStateChanged( user => {
@@ -48,29 +49,31 @@ class App extends Component {
       // db.collection("containers").get().then( snapshot => {
       // db.collection("containers").get().then( snapshot => {
 
-      let token = null;
-
       // retrieving specific data from this user: the user should be auth and has a token
       if(localStorage.getItem("token") !== null && user) {
+
         token = localStorage.getItem("token");
+
+        this.setState({
+          token: token
+        })
 
         // GET DATA FROM A SPECIFIC COLLECTION
         let collection = db.collection("containers").doc(token);
 
         // collection.get().then( snapshot => {
 
+
         collection.get().then( doc => {
           console.log("Document data:", doc.data());
           // debugger
           // data.push(doc.data().container[0]);
-
+          data = [];
           doc.data().container.forEach(item => {
             data.push(item);
           })
 
-
           this.setState({
-            token: token,
             container: data
           })
     })
@@ -131,6 +134,7 @@ class App extends Component {
     if (this.state.token !== null) {
       const containerToDB = {container: {LIST: `${this.state.inputListValue}-${id}`, ITEMS: [  ] } };
       // saving also to Firebase Database
+
       db.collection("containers").doc(this.state.token).set({
         container: container
       })
