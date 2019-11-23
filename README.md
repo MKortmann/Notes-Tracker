@@ -1,22 +1,23 @@
 # Notes Tracker
 
-The idea is to develop a mobile web friendly web application to store and manage your notes in a very easy and clean user interface. 
+The idea is to develop a mobile web friendly web application to store and manage your notes in a very easy and clean user interface. The notes should be available in any device that you use and it syncronizes at real time!
 
 The program was developed as simple as possible using only:
   * html
   * css 
   * javascript 
-  * REACT
+  * REACT (JSX)
   * MATERIAL-UI DESIGN 
      
   - **Nice Features:**
-    * You can add list that has items + subitems.
-    * Delete item & Subitem
+    * Integrate with Firebase Database
+    * Offline first technique (independent of the speed of your internet, you see the results instantly!!!!) 
+    * You can add lists that has concatenate items and subitems.
+    * Delete and Add lists & items & Subitems
+    * Subitems can be edit and marked as done
  
 ## In Development/TODO: 
  
-  - Working: Firebase (back server) integration!!!
-  - Add: edit items
   - Improve the web responsive design
   - Improve the style
   
