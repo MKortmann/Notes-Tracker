@@ -23,17 +23,17 @@ function Todo(props) {
 
  let newStyleBackground = (props.styleBackground === "#F6F9FA" ) ? '#E8A9B1' : "white"
 
- const [strike, setStrike] = useState(false);
+ // const [strike, setStrike] = useState(false);
 
- let deco = strike ? 'line-through' : null;
+ // let deco = strike ? 'line-through' : null;
 
- const clicked = () => {
-   strike ? setStrike(false) : setStrike(true);
- }
+ // const clicked = () => {
+ //   strike ? setStrike(false) : setStrike(true);
+ // }
 
   return (
-    <div style={{background: newStyleBackground, margin: "8px", textDecorationLine: deco, cursor: "pointer"}}>
-      <Typography onClick={clicked}>{props.todo}</Typography>
+    <div style={{background: newStyleBackground, margin: "8px", textDecorationLine: props.deco, cursor: "pointer"}}>
+      <Typography onClick={props.clickedAtText}>{props.todo}</Typography>
     </div>
   )
 }
@@ -115,10 +115,12 @@ const Item = (props) => {
 
   let arrowDesign = showSubItems ? "keyboard_arrow_up" : "keyboard_arrow_down";
 
+  // const itemClicked = () => {}
+
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Typography style={{fontSize: "25px"}}>{props.label}</Typography>
+        <Typography style={{fontSize: "25px", cursor: "pointer"}} onClick={e => setShowSubItems(!showSubItems)}>{props.label}</Typography>
       </Grid>
       <Grid item xs={4}>
         <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer", fontSize: "40px"}}>{arrowDesign}</Icon>
@@ -133,8 +135,10 @@ const Item = (props) => {
               <Grid item xs={10}>
                 <Todo
                   index={index}
-                  todo={todo}
+                  todo={todo.SUBITEM}
                   styleBackground={props.styleBackground}
+                  clickedAtText={props.clickedAtSubItemText.bind(this, index)}
+                  deco={todo.DECO}
                 />
               </Grid>
               <Grid item xs={2}>

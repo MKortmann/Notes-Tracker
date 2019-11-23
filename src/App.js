@@ -33,7 +33,8 @@ class App extends Component {
     inputListValue: "",
     inputItemValue: "",
     outputPaperMsg: null,
-    token: null
+    token: null,
+    textDecoSubItem: null
   }
 
   componentDidMount() {
@@ -136,7 +137,8 @@ class App extends Component {
   // ADD the SUBITEM to the items array
   addSubItem = (subitem, selectedItem) => {
     const container = [...this.state.container];
-    container[this.state.selectedList].ITEMS[selectedItem].SUBITEMS.push(subitem);
+    // container[this.state.selectedList].ITEMS[selectedItem].SUBITEMS.push(subitem);
+    container[this.state.selectedList].ITEMS[selectedItem].SUBITEMS.push({SUBITEM: subitem, DECO: null});
     this.setState({
       container: container,
       inputItemValue: ""
@@ -266,14 +268,52 @@ class App extends Component {
         }
       }
     });
+  }
 
+  // here we have to save the text s
+  saveStateTextOfSubItem = (itemIndex, subItemIndex) => {
+
+    console.log(`[CLICKED AT SUBITEM]: ${subItemIndex}`);
+    console.log(`[SELECTED LIST]: ${this.state.selectedList}`);
+    console.log(`[SELECTED ITEM]: ${itemIndex}`);
+
+    const container = [...this.state.container];
+
+    if(container[this.state.selectedList].ITEMS[itemIndex].SUBITEMS[subItemIndex].DECO  === null) {
+      container[this.state.selectedList].ITEMS[itemIndex].SUBITEMS[subItemIndex].DECO = "line-through";
+    } else {
+      container[this.state.selectedList].ITEMS[itemIndex].SUBITEMS[subItemIndex].DECO = null;
+    }
+
+    this.setState({
+      container: container,
+      inputItemValue: ""
+    })
+    //
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            console.log("SUBITEM EDITED!");
+          })
+        }
+      }
+    });
 
   }
 
   render () {
 
   // RENDER THE LIST OF BUTTONS
-  const buttonsListToBeRender =  (
+  let buttonsListToBeRender = null;
+  if (this.state.container.length !== 0) {
+  buttonsListToBeRender =  (
       this.state.container.map((i, index) => {
         if(this.state.selectedList === index) {
           return (
@@ -300,6 +340,7 @@ class App extends Component {
         }
       })
     )
+  }
 
   // FORM THAT WILL ALLOW US TO ADD ITEMS
   let formToAddItemsToBeRender = null;
@@ -337,7 +378,10 @@ class App extends Component {
               addSubItem={this.addSubItem} clickedSubItem={this.subItemRemove.bind(this, index)}
               styleBackground={styleBackground}
               clicked={this.itemRemove.bind(this, index)}
-              id={index}/>
+              id={index}
+              clickedAtSubItemText={this.saveStateTextOfSubItem.bind(this, index)}
+              textDeco={this.state.textDecoSubItem}
+              />
           </WithPaper>
         )
       })

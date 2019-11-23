@@ -35,7 +35,7 @@ export default function PaperSheet() {
         </Paper>
         <Paper className={classes.smallnotes}>
           <Typography component="p">
-            You are in test mode! All your notes are only temporary saved.
+            You are in test mode! All your notes are temporarily saved.
           </Typography>
         </Paper>
       </Grid>
