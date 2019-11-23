@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 // import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
+import ModalEdit from "./ModalEdit"
+
 
 
 /* IN THIS CASE TO IMPROVE THE READABILITY I ADDING THREE COMPONENTS IN THIS FILE
@@ -119,13 +121,13 @@ const Item = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={6}>
+      <Grid item xs={10}>
         <Typography style={{fontSize: "25px", cursor: "pointer"}} onClick={e => setShowSubItems(!showSubItems)}>{props.label}</Typography>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={1}>
         <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer", fontSize: "40px"}}>{arrowDesign}</Icon>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={1}>
         <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer", fontSize: "40px"}} id={props.id}/>
       </Grid>
       {showSubItems ?
@@ -141,7 +143,10 @@ const Item = (props) => {
                   deco={todo.DECO}
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={1}>
+                <ModalEdit clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
+              </Grid>
+              <Grid item xs={1}>
                 <DeleteOutlinedIcon onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
               </Grid>
           </Grid>

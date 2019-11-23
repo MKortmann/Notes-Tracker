@@ -13,6 +13,7 @@ import 'typeface-roboto';
 // import the wrapper component to make "the paper like style"
 import WithPaper from "./hoc/WithPaper";
 
+
 class App extends Component {
 
 // container: we have here a container that store all the list + items and the respective subitems
@@ -34,7 +35,10 @@ class App extends Component {
     inputItemValue: "",
     outputPaperMsg: null,
     token: null,
-    textDecoSubItem: null
+    textDecoSubItem: null,
+    showModalEdit: null,
+    modalEditShow: false
+
   }
 
   componentDidMount() {
@@ -270,7 +274,8 @@ class App extends Component {
     });
   }
 
-  // here we have to save the text s
+  // as soon as you clicked in the subitem, it will make a line-through is, if there is
+  // already a line-through, it will remove it.
   saveStateTextOfSubItem = (itemIndex, subItemIndex) => {
 
     console.log(`[CLICKED AT SUBITEM]: ${subItemIndex}`);
@@ -300,7 +305,42 @@ class App extends Component {
             container: container
           })
           .then(() => {
-            console.log("SUBITEM EDITED!");
+            console.log("SUBITEM EDITED DECO!");
+          })
+        }
+      }
+    });
+
+  }
+
+  clickedToEditSubItem = (itemIndex, subItemIndex, inputText) => {
+    console.log(`[CLICKED AT SUBITEM]: ${subItemIndex}`);
+    console.log(`[SELECTED LIST]: ${this.state.selectedList}`);
+    console.log(`[SELECTED ITEM]: ${itemIndex}`);
+    console.log(`[INPUT TEXT]: ${inputText}`);
+
+    const container = [...this.state.container];
+
+
+    container[this.state.selectedList].ITEMS[itemIndex].SUBITEMS[subItemIndex].SUBITEM = inputText;
+
+
+    this.setState({
+      container: container,
+      inputItemValue: ""
+    })
+    //
+    // only contact firebase if the user is logged
+    auth.onAuthStateChanged( user => {
+      if (user) {
+        // sending data to firebase: the user should has a token
+        if (this.state.token !== null) {
+          // saving also to Firebase Database
+          db.collection("containers").doc(this.state.token).set({
+            container: container
+          })
+          .then(() => {
+            console.log("SUBITEM EDITED TEXT!");
           })
         }
       }
@@ -381,6 +421,7 @@ class App extends Component {
               id={index}
               clickedAtSubItemText={this.saveStateTextOfSubItem.bind(this, index)}
               textDeco={this.state.textDecoSubItem}
+              clickedToEditSubItem={this.clickedToEditSubItem.bind(this, index)}
               />
           </WithPaper>
         )
@@ -407,6 +448,7 @@ class App extends Component {
           <Grid item xs={12}>
               {itemsToBeRender}
           </Grid>
+          {this.state.showModalEdit}
         </Grid>
       </div>
     );
