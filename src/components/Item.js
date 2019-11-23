@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import DoneIcon from '@material-ui/icons/Done';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import TextField from "@material-ui/core/TextField";
 // import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
-import ModalEdit from "./ModalEdit"
+import ModalEdit from "./ModalEdit";
 
 
 
@@ -134,7 +136,7 @@ const Item = (props) => {
         <React.Fragment>
         {subItems.map((todo, index) => (
           <Grid container key={index}>
-              <Grid item xs={10}>
+              <Grid item xs={9}>
                 <Todo
                   index={index}
                   todo={todo.SUBITEM}
@@ -144,10 +146,13 @@ const Item = (props) => {
                 />
               </Grid>
               <Grid item xs={1}>
+                <DoneIcon fontSize="large" onClick={props.clickedAtSubItemText.bind(this, index)} style={{cursor: "pointer"}}/>
+              </Grid>
+              <Grid item xs={1}>
                 <ModalEdit clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
               </Grid>
               <Grid item xs={1}>
-                <DeleteOutlinedIcon onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
+                <DeleteOutlinedIcon fontSize="large" onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
               </Grid>
           </Grid>
         ))}

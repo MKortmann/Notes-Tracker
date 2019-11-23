@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import EditIcon from '@material-ui/icons/Edit';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import Input from "./Input";
 import Button from "./Button";
 
@@ -41,7 +42,7 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-      <EditIcon onClick={handleOpen}  style={{cursor: "pointer"}}/>
+      <EditIcon fontSize="large" onClick={handleOpen}  style={{cursor: "pointer"}}/>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
