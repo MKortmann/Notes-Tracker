@@ -24,7 +24,7 @@ export default function PaperSheet() {
 
   return (
     <Grid container direction="row" justify="center" alignItems="center">
-      <Grid item xs={8}>
+      <Grid item xs={11}>
         <Paper className={classes.root}>
           <Typography variant="h5" component="h3">
             Welcome to Notes Tracker
