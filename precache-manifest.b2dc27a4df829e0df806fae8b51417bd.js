@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "609f13cc2f913679c883e1f5ecd349f2",
+    "revision": "c2e786c528ed5c529e59673f7ebcb871",
     "url": "/Notes-Tracker/index.html"
   },
   {
-    "revision": "fd3f44469efee477cb8d",
+    "revision": "c85f7471ec51ac3910a3",
     "url": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css"
   },
   {
-    "revision": "d44a40d97e1b51e1926a",
-    "url": "/Notes-Tracker/static/css/main.1779617f.chunk.css"
+    "revision": "3cd5ae69a06f931913d4",
+    "url": "/Notes-Tracker/static/css/main.d3b68d13.chunk.css"
   },
   {
-    "revision": "fd3f44469efee477cb8d",
-    "url": "/Notes-Tracker/static/js/2.ed8a7f97.chunk.js"
+    "revision": "c85f7471ec51ac3910a3",
+    "url": "/Notes-Tracker/static/js/2.7de0a1aa.chunk.js"
   },
   {
-    "revision": "d44a40d97e1b51e1926a",
-    "url": "/Notes-Tracker/static/js/main.f2060c4c.chunk.js"
+    "revision": "3cd5ae69a06f931913d4",
+    "url": "/Notes-Tracker/static/js/main.ed6b7029.chunk.js"
   },
   {
     "revision": "b4ec482cfe822fdcf06c",
     "url": "/Notes-Tracker/static/js/runtime-main.406529ff.js"
+  },
+  {
+    "revision": "8ab4fec3cb0f14f1c09bcdaf695db372",
+    "url": "/Notes-Tracker/static/media/mk.8ab4fec3.svg"
   },
   {
     "revision": "5cb7edfceb233100075dc9a1e12e8da3",
