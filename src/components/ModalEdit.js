@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 export default function TransitionsModal(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(props.initialValue);
 
   const handleOpen = () => {
     setOpen(true);
@@ -62,6 +62,7 @@ export default function TransitionsModal(props) {
               label={"Add A New SubItem Value"}
               placeholder={"Add A New SubItem Value"}
               onChange={e => setInputText(e.target.value)}
+              value={inputText}
               >
               </Input>
             <Button label="Edit" color={"red"} clicked={editTextAndCloseModal}></Button>

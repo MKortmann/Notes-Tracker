@@ -158,7 +158,7 @@ const Item = (props) => {
               </Grid>
 
               <Grid item xs={2}>
-                <ModalEdit clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
+                <ModalEdit initialValue={todo.SUBITEM} clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
               </Grid>
               <Grid item xs={2}>
                 <HighlightOffIcon fontSize="large" onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
