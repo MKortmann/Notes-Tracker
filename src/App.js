@@ -407,7 +407,7 @@ class App extends Component {
       this.state.container[this.state.selectedList].ITEMS.map((i, index) => {
         let styleBackground = null;
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "#C0F2FC"
-        styleBackground = (index%2 === 0 ) ? '#F6F9FA' : "#C0F2FC"
+        styleBackground = (index%2 === 0 ) ? '#47BCB8' : "#C0F2FC"
         // styleBackground = (index%2 === 0 ) ? 'rgba(0,212,255,0.5)' : "white"
         return (
           <WithPaper key={index}  background={styleBackground}>

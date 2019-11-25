@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import DoneIcon from '@material-ui/icons/Done';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import TextField from "@material-ui/core/TextField";
 // import Fab from '@material-ui/core/Fab';
@@ -25,7 +26,7 @@ to the container in APP.js
 // using direct destructuring in the func argument.
 function Todo(props) {
 
- let newStyleBackground = (props.styleBackground === "#F6F9FA" ) ? '#E8A9B1' : "white"
+ let newStyleBackground = (props.styleBackground === "#47BCB8" ) ? '#FFC6CE' : "white"
 
  // const [strike, setStrike] = useState(false);
 
@@ -122,21 +123,25 @@ const Item = (props) => {
   // const itemClicked = () => {}
 
   return (
-    <Grid container>
-      <Grid item xs={10}>
+    <Grid container >
+      <Grid item xs={8}>
         <Typography style={{fontSize: "25px", cursor: "pointer"}} onClick={e => setShowSubItems(!showSubItems)}>{props.label}</Typography>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <Icon onClick={e => setShowSubItems(!showSubItems)} style={{cursor: "pointer", fontSize: "40px"}}>{arrowDesign}</Icon>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <DeleteOutlinedIcon onClick={props.clicked.bind(this, props.id)} style={{cursor: "pointer", fontSize: "40px"}} id={props.id}/>
       </Grid>
       {showSubItems ?
         <React.Fragment>
         {subItems.map((todo, index) => (
           <Grid container key={index}>
-              <Grid item xs={9}>
+            <Grid item xs={2}>
+              {todo.DECO === "line-through" ? <DoneAllIcon fontSize="large" onClick={props.clickedAtSubItemText.bind(this, index)} style={{cursor: "pointer"}}/> :
+              <DoneIcon fontSize="large" onClick={props.clickedAtSubItemText.bind(this, index)} style={{cursor: "pointer"}}/> }
+            </Grid>
+              <Grid item xs={6}>
                 <Todo
                   index={index}
                   todo={todo.SUBITEM}
@@ -145,13 +150,11 @@ const Item = (props) => {
                   deco={todo.DECO}
                 />
               </Grid>
-              <Grid item xs={1}>
-                <DoneIcon fontSize="large" onClick={props.clickedAtSubItemText.bind(this, index)} style={{cursor: "pointer"}}/>
-              </Grid>
-              <Grid item xs={1}>
+
+              <Grid item xs={2}>
                 <ModalEdit clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
               </Grid>
-              <Grid item xs={1}>
+              <Grid item xs={2}>
                 <DeleteOutlinedIcon fontSize="large" onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
               </Grid>
           </Grid>

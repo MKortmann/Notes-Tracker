@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 1,1,1),
     // margin: "10px",
     margin: "5px",
-    marginLeft: "30px",
-    marginRight: "30px",
+    marginLeft: "5px",
+    marginRight: "5px",
     color: "black",
     borderColor: 'text.primary'
   },
