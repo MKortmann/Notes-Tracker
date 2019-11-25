@@ -64,7 +64,7 @@ export default function TransitionsModal(props) {
               onChange={e => setInputText(e.target.value)}
               >
               </Input>
-            <Button label="Edit" clicked={editTextAndCloseModal}></Button>
+            <Button label="Edit" color={"red"} clicked={editTextAndCloseModal}></Button>
             <Button label="Back" clicked={handleClose}></Button>
 
           </div>

@@ -3,7 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import DoneIcon from '@material-ui/icons/Done';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import TextField from "@material-ui/core/TextField";
 // import Fab from '@material-ui/core/Fab';
@@ -155,7 +161,7 @@ const Item = (props) => {
                 <ModalEdit clickedToEditSubItem={props.clickedToEditSubItem.bind(this, index)}></ModalEdit>
               </Grid>
               <Grid item xs={2}>
-                <DeleteOutlinedIcon fontSize="large" onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
+                <HighlightOffIcon fontSize="large" onClick={props.clickedSubItem.bind(this, index)} style={{cursor: "pointer"}}/>
               </Grid>
           </Grid>
         ))}

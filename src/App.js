@@ -6,12 +6,18 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import Item from "./components/Item";
 import { db, auth } from "./components/Modal";
-import Paper from "./components/Paper";
+import MessageWelcome from "./components/Message";
 // import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
 import 'typeface-roboto';
 // import the wrapper component to make "the paper like style"
 import WithPaper from "./hoc/WithPaper";
+import Icon from '@material-ui/core/Icon';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 class App extends Component {
@@ -37,7 +43,8 @@ class App extends Component {
     token: null,
     textDecoSubItem: null,
     showModalEdit: null,
-    modalEditShow: false
+    modalEditShow: false,
+    showInputsToogle: false
 
   }
 
@@ -80,7 +87,7 @@ class App extends Component {
     // used to clear state: when user logOut
     this.setState({
       container: [],
-      outputPaperMsg: <Paper />
+      outputPaperMsg: <MessageWelcome />
     })
   }
   })
@@ -394,7 +401,7 @@ class App extends Component {
               </form>
             </Grid>
             <Grid item>
-              <Button width={"60%"} label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
+              <Button width={"60%"} label={"Submit"} color={"#379B98"} clicked={this.addItem} icon={"send"}/>
             </Grid>
         </React.Fragment>
     )
@@ -431,21 +438,28 @@ class App extends Component {
       <div className="App">
         <Grid className="App" container justify="center" alignItems="center">
           <Navbar />
-          {this.state.outputPaperMsg}
-          <Grid item xs={12}>
-            <Grid item>
-              <form onSubmit={this.addList}>
-                <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
-              </form>
-            </Grid>
-            <Grid item >
-              <Button width={"60%"} label={"Add List"} color={"#00474F"} clicked={this.addList} icon={"add"} />
-            </Grid>
-          </Grid>
-
-          <Grid item xs={12}>
-          {formToAddItemsToBeRender}
-          </Grid>
+          {this.state.showInputsToogle ?
+            <Icon onClick={e => this.setState({showInputsToogle: false})} style={{cursor: "pointer", fontSize: "60px"}}>{"keyboard_arrow_down"}</Icon>
+          : (
+            <React.Fragment>
+              <Icon onClick={e => this.setState({showInputsToogle: true})} style={{cursor: "pointer", fontSize: "60px"}}>{"keyboard_arrow_up"}</Icon>
+              {this.state.outputPaperMsg}
+              <Grid item xs={12}>
+                <Grid item>
+                  <form onSubmit={this.addList}>
+                    <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
+                  </form>
+                </Grid>
+                <Grid item >
+                  <Button width={"60%"} label={"Add List"} color={"#379B98"} clicked={this.addList} icon={"add"} />
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+              {formToAddItemsToBeRender}
+              </Grid>
+              </React.Fragment>
+            )
+          }
           <Grid item xs={12}>
               {itemsToBeRender}
           </Grid>
