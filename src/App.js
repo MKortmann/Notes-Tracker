@@ -19,6 +19,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import Footer from "./components/Footer";
 
 class App extends Component {
 
@@ -465,6 +466,7 @@ class App extends Component {
           </Grid>
           {this.state.showModalEdit}
         </Grid>
+        <Footer />
       </div>
     );
   }

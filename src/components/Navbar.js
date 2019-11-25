@@ -4,18 +4,21 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Modal, { auth } from "./Modal";
+import Mk from "../icons/mk.svg";
+import Hidden from '@material-ui/core/Hidden';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    background: 'rgba(0,212,255,0.5)',
-    color: "black"
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
+    background: '#1B998B',
+    color: "white"
   },
   title: {
     flexGrow: 1,
+    [theme.breakpoints.up('sm')]: {
+     marginLeft: "200px",
+   },
   },
 }));
 
@@ -26,8 +29,8 @@ export default function ButtonAppBar(props) {
 
   const showAllMenus = (
     <React.Fragment>
-      <Modal showAccount={true} label={"Account"} title={"Account Details"} description={""} buttonLabel={"close"}></Modal>
-      <Modal showInputs={false} label={"LogOut"} title={"LogOut"} description={""} buttonLabel={"close"} buttonLabel2={"LogOut"}></Modal>
+        <Modal showAccount={true} label={"Account"} title={"Account Details"} description={""} buttonLabel={"close"}></Modal>
+        <Modal showInputs={false} label={"LogOut"} title={"LogOut"} description={""} buttonLabel={"close"} buttonLabel2={"LogOut"}></Modal>
     </React.Fragment>
   );
   const showNotAllMenus = (
@@ -53,9 +56,17 @@ export default function ButtonAppBar(props) {
     <React.Fragment>
       <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <Typography variant="h4" className={classes.title}>
-            Notes Tracker
-          </Typography>
+          <img src={Mk} alt="MK-Logo" />
+            <Hidden mdDown>
+              <Typography variant="h4" only={"md", "xl"} className={classes.title}>
+                  Notes Tracker App
+              </Typography>
+            </Hidden>
+            <Hidden lgUp>
+            <Typography variant="h6" only={"mdDown"}  className={classes.title}>
+              Notes Tracker
+            </Typography>
+            </Hidden>
           {userIsOnline ? showAllMenus : showNotAllMenus}
         </Toolbar>
       </AppBar>
