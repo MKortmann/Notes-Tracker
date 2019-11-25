@@ -14,12 +14,12 @@ const MyButton = styled(Button)({
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   color: 'white',
   height: 36,
-  padding: '0 30px',
   "&:hover": {
     background: "rgba(255, 105, 135, .5)",
   },
-  marginTop: "5px",
-  marginRight: "5px"
+  margin: "5px",
+  marginBottom: "20px"
+
 });
 
 
@@ -27,7 +27,7 @@ const MyButton = styled(Button)({
 function button (props) {
   return (
     <React.Fragment>
-      <MyButton onClick={props.clicked} variant="contained" color="default" style={{background: props.color}}  endIcon={<Icon onClick={props.listDeleteIconClicked}>{props.icon}</Icon>} >
+      <MyButton onClick={props.clicked} variant="contained" color="default" style={{background: props.color, width: props.width}}  endIcon={<Icon onClick={props.listDeleteIconClicked}>{props.icon}</Icon>} >
         {props.label}
       </MyButton>
     </React.Fragment>

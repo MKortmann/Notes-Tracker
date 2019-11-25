@@ -388,17 +388,14 @@ class App extends Component {
     formToAddItemsToBeRender = (
         <React.Fragment>
           {buttonsListToBeRender}
-
-          <Grid container alignItems="center" justify="center">
-            <Grid item xs={12} sm={6}>
+            <Grid item>
               <form onSubmit={this.addItem}>
                 <Input label={"Please, add your item"} onChange={this.saveItem} value={this.state.inputItemValue}/>
               </form>
             </Grid>
-            <Grid item xs={12} sm={2}>
-              <Button label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
+            <Grid item>
+              <Button width={"60%"} label={"Submit"} color={"#00474F"} clicked={this.addItem} icon={"send"}/>
             </Grid>
-          </Grid>
         </React.Fragment>
     )
   }
@@ -432,17 +429,19 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Grid className="App" container direction="row" spacing={0} justify="center" alignItems="center">
+        <Grid className="App" container justify="center" alignItems="center">
           <Navbar />
           {this.state.outputPaperMsg}
-            <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
+            <Grid item>
               <form onSubmit={this.addList}>
                 <Input label={"Please, add your list name"} onChange={this.saveList} value={this.state.inputListValue}/>
               </form>
             </Grid>
-            <Grid item xs={12} sm={2}>
-              <Button label={"Add List"} color={"#00474F"} clicked={this.addList} icon={"add"} />
+            <Grid item >
+              <Button width={"60%"} label={"Add List"} color={"#00474F"} clicked={this.addList} icon={"add"} />
             </Grid>
+          </Grid>
 
           <Grid item xs={12}>
           {formToAddItemsToBeRender}

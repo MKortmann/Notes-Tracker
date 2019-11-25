@@ -25,10 +25,9 @@ export default function Input(props) {
         onChange={props.onChange}
         id="standard-full-width"
         label={props.label}
-        style={{ margin: 8 }}
+        style={{ margin: 4 }}
         placeholder={props.label}
         fullWidth
-        margin="normal"
         InputLabelProps={{
           shrink: true,
         }}
