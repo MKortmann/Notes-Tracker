@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c2e786c528ed5c529e59673f7ebcb871",
+    "revision": "fe263ee7cbf70e974d1022ce5f2bb37a",
     "url": "/Notes-Tracker/index.html"
   },
   {
-    "revision": "c85f7471ec51ac3910a3",
+    "revision": "e62d68a41a869f08a2e2",
     "url": "/Notes-Tracker/static/css/2.8e8a889d.chunk.css"
   },
   {
-    "revision": "3cd5ae69a06f931913d4",
-    "url": "/Notes-Tracker/static/css/main.d3b68d13.chunk.css"
+    "revision": "468e55d549c0c6ed3962",
+    "url": "/Notes-Tracker/static/css/main.1779617f.chunk.css"
   },
   {
-    "revision": "c85f7471ec51ac3910a3",
-    "url": "/Notes-Tracker/static/js/2.7de0a1aa.chunk.js"
+    "revision": "e62d68a41a869f08a2e2",
+    "url": "/Notes-Tracker/static/js/2.426f55a1.chunk.js"
   },
   {
-    "revision": "3cd5ae69a06f931913d4",
-    "url": "/Notes-Tracker/static/js/main.ed6b7029.chunk.js"
+    "revision": "468e55d549c0c6ed3962",
+    "url": "/Notes-Tracker/static/js/main.3608ffb0.chunk.js"
   },
   {
     "revision": "b4ec482cfe822fdcf06c",
