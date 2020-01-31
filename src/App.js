@@ -83,13 +83,15 @@ class App extends Component {
       })
     })
 
-  } else {
+  } else if (!user) {
     // used to clear state: when user logOut
     this.setState({
       container: [],
       outputPaperMsg: <MessageWelcome />
     })
   }
+
+
   })
 
 }
@@ -239,7 +241,10 @@ class App extends Component {
   setActiveList = (id) => {
     // we will get here the last value of the string that correspond to the id number
     // used to select the active item in the items.
-    const lastIdValue = parseInt(id.slice(-1))-1;
+    // for that we will use REGULAR EXPRESSIONS
+    const re = /-/;
+    const result = re.exec(id);
+    const lastIdValue = parseInt(id.slice(result.index+1)-1);
     this.setState({
       selectedList: lastIdValue
     })
